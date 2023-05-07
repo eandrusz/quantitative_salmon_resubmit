@@ -1,0 +1,144 @@
+---
+title: "Quantifying Impacts of an Environmental Intervention Using Environmental DNA: Supplemental Text 2"
+author: 
+- Elizabeth Andruszkiewicz Allan, 
+- Ryan P. Kelly, 
+- Erin D'Agnese, 
+- Maya Garber-Yonts,
+- Megan Shaffer,
+- Zachary Gold,
+- Andrew O. Shelton 
+date: '2023'
+output:
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+    latex_engine: pdflatex
+    number_sections: no
+    extra_dependencies: ["float"]
+  word_document: default
+header-includes:
+- \usepackage{lineno}
+- \linenumbers
+- \usepackage{setspace}\doublespacing
+- \usepackage{gensymb}
+bibliography: references.bib
+csl: ecological-applications.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+library(rstan)
+library(loo)
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
+
+```
+
+Our analysis depends upon a set of quantitative models, each linking our observations of metabarcoding reads or qPCR cycle-threshold values to an underlying concentration of target-species DNA in water samples.
+
+In summary, we (1) use a mock community with a known composition to calibrate our environmental metabarcoding data as described in @shelton. The result is a set of estimated proportions of DNA from each species in each sample. We then (2) relate qPCR cycle-threshold values for a reference species (here, cutthroat trout (*O. clarkii*)) from the same set of samples to a standard curve to yield quantitative estimates of the concentration of our reference species in each sample. We (3) use these absolute estimates of DNA concentration to expand the metabarcoding-derived proportion data into a complete set of quantitative estimates of DNA concentrations for each species in each sample. We account for the variable water-flow-rates of the sampled creeks by converting these concentrations from units of copies/L into units of copies/s, given an flow rate in L/s. Finally, we (4) construct a time-series model for these species-specific concentrations, sharing information across creeks and time-points. We detail the statistical details of these steps below.
+
+## Calibration with a Mock Community
+
+See @shelton; @mclaren2019; @silverman2021 for similar analyses. 
+
+For ease of computation, we ran the metabarcoding-calibration model on data for each of our five creeks separately, using the same mock communities to calibrate each.
+
+Model Diagnostics: 3 chains, 1500 iterations, for all parameters, $\hat{R} \leq 1.02$
+
+## qPCR Calibration
+
+See @shelton2019; @mccall2014 for similar analyses.
+
+For all samples $i$, on qPCR plates $j$, we either observe ($z_{i,j} = 0$ or do not observe $z_{i,j} = 1$) amplification; we omit the subscripts $i$ and $j$ from the following description except where necessary for clarity. We assume an intercept of zero.
+
+We model the probability of detection $P(z = 1)$) as a linear function of concentration and slope parameter $\phi$, ($P(z = 1) = \theta = c\phi$), with a logit transform to constrain the inferred probability to between 0 and 1.
+
+For those samples that amplify ($z = 1$), we model the observed Ct value ($y$) as a linear function of our parameter of interest, the log-concentration of target-species DNA under analysis ($c$). We treat $y$ as drawn from a normal distribution $y \sim N(\mu_{i,j}, \sigma_{i,j})$), where each triplicate sample on each qPCR plate has its own estimated mean and standard deviation. The means are estimated as a straightforward linear model, $mu = \beta_{0,j} + \beta_{1,j}c$, but we allow the standard deviation to vary as a linear function of log-concentration so as to accurately capture decreasing precision with decreasing concentration: $\sigma = e^{\gamma_{0} + \gamma_{1,j}c}$; we estimate these parameters as an exponent to constrain $\sigma > 0$.
+
+Samples with known concentrations (i.e., standards) were fit jointly with unknown samples (i.e., environmental samples); because qPCR plate identity was shared among all environmental samples and standards within a plate, this has the effect of applying plate-specific slope and intercept values for the standard curve to each of the environmental samples on the plate.
+
+We apply moderately informative priors that make use of background information in hand. For example, because qPCR standard curves of all kinds have slopes near -3, this slope becomes our background expectation as embodied in the prior on $\beta_1$, but the standard deviation of that prior leaves plenty of room for this background to be overwhelmed by the observed data. The same logic applies to the intercept of the standard curve, which in qPCR (for any given species) generally falls near 39 cycles, an expectation that we formalize by having $\beta_0$ drawn from a normal distribution with $\mu = 39$ and $\sigma = 3$.
+
+Taken together with priors, the model is:
+
+```{=tex}
+\begin{gather*}
+z_{i,j} \sim bernoulli(\theta_{i,j}) \\
+\theta_{i,j} = logit^{-1}(\phi*c_{i,j}) \\[4mm]
+y_{i,j} \sim normal(\mu_{i,j}, \sigma_{i,j})   \text{    if } z_{i,j} = 1 \\
+\mu_{i,j} = \beta_{0,j} + \beta_{1,j} * c_{i,j} \\
+\sigma_{i,j} = e^{\gamma_{0}  + \gamma_{1,j}*c_{i,j}} \\[4mm]
+\beta_{0} \sim normal(39, 3) \\
+\beta_{1} \sim normal(-3, 1) \\
+\gamma_{1} \sim normal(0,5) \\
+\gamma_{0} \sim normal(-2,1)
+\end{gather*}
+```
+![Example of 2500 samples from the joint posterior distribution of the model fit for a single representative qPCR plate. Red dots are standard-curve observations with known starting concentrations. The spread of black dots (posterior samples) indicates the shape of the calibration curve, with standard deviation increasing as concentration decreases.](../Output/SupplementalFigures/qPCR_calibration_supplemental.png)
+
+Model Diagnostics: 3 chains, 2500 iterations, for all parameters, $\hat{R} \leq 1.002$.
+
+## Expanding Proportions into Absolute Abundances
+
+See Pont et al. 2022; McClaren 2022 pre-print for examples of similar expansions.
+
+As described in the main text, calibrated metabarcoding analysis yielded quantitative estimates of the proportions of species' DNA in environmental samples prior to PCR.
+
+We then converted these proportions into absolute abundances by expansion, in light of the qPCR results for our reference species *O. clarkii*. We estimated the total amplifiable salmonid DNA in environmental sample $i$ as $DNA_{salmonid_{i}} = \frac{[qPCR_{reference_{i}}]}{Proportion_{reference_{i}}}$, and then expanded species' proportions into absolute concentrations by multiplying these sample-specific total concentrations by individual species' proportions, such that for species $j$ in sample $i$, $DNA_{i,j} = DNA_{salmonid_{i}} * Proportion_{i,j}$.
+
+We transformed the resulting abundances to account for the creeks' flow-rates as described in the main text.
+
+Ideally, we would have fit a joint model that simultaneously estimated species proportions (metabarcoding), absolute concentrations (qPCR), and developed the time-series trends for all species. As a practical computational matter, we had to create these models individually, which entailed some loss of parameter variance along the way. For the time-series model described below, we used posterior means from the metabarcoding * qPCR model as observations, rather than being able to use the full posteriors for each input to the model. We deemed this acceptable because our metabarcoding proportions were quite precisely estimated: for example, in our focal Padden Creek, the coefficient of variation for estimated proportions of our reference species (*O. clarkii*) ranged from 0.008 to 0.25.
+
+## Time-Series Model
+
+At a given station in a given creek, some DNA concentration exists for each species. For simplicity, we focus on a single species and a single station (downstream or upstream) for the moment.
+
+Our observations of the (log) DNA concentration in creek $i$ at time $t$ are distributed as $Y_{i,t} \sim \mathcal{N}(\mu_{i,t},\,\sigma^{2})$. More complex versions of the model may let $\sigma$ vary across creeks, time points, species, or with environmental covariates of interest.
+
+We are interested in how the DNA concentration changes over time, so we assert that the expected value of DNA in a creek at time $t$, $\mu_{i,t}$, depends upon its value in the previous time step $t-1$, in some way. 
+
+We can use a simple, first-order autoregressive (AR(1)) model with $\mu_{i,t}$ as a linear function of $\mu_{i,t-1}$ with slope $\beta$ and intercept $\alpha$. Here, $\beta$ reflects the degree of autocorrelation between time steps $t$ and $t-1$; a stationary model requires $|\beta| \leq 1$. $\alpha$ estimates the shift in the mean, after accounting for autocorrelation, at a given creek and time-point. 
+
+However, to estimate the process error on the autoregressive term explicitly, we can treat the product of $\beta\mu_{i,t-1}$ as being the expected value of a normal distribution with variance $\phi^2$, the individual realizations of which are model term $\epsilon_{i,t}$
+
+We can add observations from the two stations per creek -- upstream and downstream of the culvert -- simply by adding a subscript to the model. We let $d$ be a subscript indicating station ($d = 1 \text{ if downstream, } d = 2 \text{ if upstream}$). A final model term, $\eta$, captures the difference in log-DNA concentration between upstream and downstream stations within a creek; we set $\eta_{d = 1} = 0$ such that the value of $\eta_{d = 2}$ is the effect of the culvert within a given creek at a given time. The effect of construction in our focal Padden Creek, then, is the change in $\eta$ after construction vs. prior to construction.
+
+For each species $j$ -- the subscript for which we omit here for clarity -- we have a single overall model of the change in eDNA concentration among species, creeks, timepoints, and stations:
+
+
+```{=tex}
+\begin{align*}
+Y_{i,t,d} &\sim \mathcal{N}(\mu_{i,t,d},\,\sigma_{\text{obs}}^{2})\\
+\mu_{i,t,d} &= \alpha_{i,t} + \epsilon_{i,t,d} + \eta_{i,t,d}\\
+\epsilon_{i,t,d} &\sim \mathcal{N}(\beta\mu_{i,t-1,d},\, \phi^2)
+\end{align*}
+```
+
+We complete the model by specifying the prior distributions from which each parameter is drawn, selecting weakly informative priors for each parameter.
+
+```{=tex}
+\begin{align*}
+\alpha_{i,t} &\sim \mathcal{N}(\mu_{\alpha}, \sigma_{\alpha})\\
+\beta &\sim \mathcal{U}(-1, 1) \\
+\sigma_{\text{obs}} &\sim gamma(1,2) \\
+\sigma_{\alpha} &\sim gamma(1,2) \\
+\eta &\sim \mathcal{N}(\mu_{\eta}, 1) \\
+\phi &\sim gamma(1,2) \\
+\bf{\mu_{\alpha}} &\sim \mathcal{N}(0, 10) \\
+\bf{\mu_{\alpha}} &\sim \mathcal{N}(0, 5)
+\end{align*}
+```
+To reflect (in part) the hierarchical structure of our data, we let our intercept terms, $\alpha$ be drawn from species-specific distributions, where each species has a different mean, but all species share a common variance.
+
+This model shares enough information across time points (within a creek) and across creeks (within a time point) that we can use it to infer DNA concentrations that we do not actually observe -- we treat the temporal/spatial points to be inferred as missing data, parameters to be estimated by the larger model.
+
+Model Diagnostics: 3 chains, 3500 iterations, warmup = 1000. Total warmup draws: 7500. For all parameters, $\hat{R} \leq 1.02$.
+
+
+## References

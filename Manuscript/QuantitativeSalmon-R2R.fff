@@ -1,0 +1,101 @@
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/SiteMap.png}
+\caption{Map of sampling locations near Bellingham, Washington. In the
+subset, open triangles designate the downstream sampling location and
+open circles designate the upstream sampling location. Padden Creek is
+the treatment creek where the culvert was replaced.\label{fig:map}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/flow_gauges.png}
+\caption{Discharge (m\textsuperscript{3}/s) in Padden (USGS Gage
+12201905), Chuckanut (USGS Gage 12201700), and Squalicum (USGS Gage
+12204010) Creeks over the course of sampling. Open circles show the days
+when sampling occurred. Gauges at Chuckanut and Squalicum Creek went
+offline in November 2021 after a major storm event. Portage Creek and
+Barnes Creek did not have stream gauges.\label{fig:flows}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/conceptual_figure.png}
+\caption{Conceptual figure of different datasets and models used for
+analyses. * indicates that here, biological replicates are different
+dilutions of the synthetic gBlock. ** indicates that for most samples,
+only one technical replicate was sequenced but for one sample per
+sampling month, three techincal replicates were sequenced to check for
+consistency across replicates. *** indicates that here, the three
+biological replicates indicate three different mock communities with
+varying species compositions, but all containing the four salmonids of
+interest.\label{fig:conceptualfig}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/proportions_after_qm.png}
+\caption{Compositions of salmonid DNA as determined by metabarcoding
+after correction for amplification bias. Note that no sampling occurred
+in September 2021 at Squalicum Creek because the creek was dry. The
+empty bars in the Barnes upstream sites indicate that no salmonid DNA
+was found at those time points. The vertical dashed line in Padden Creek
+indicates the time period in which the culvert was
+replaced.\label{fig:qm}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/modeled_cut_qpcr_updown-line.png}
+\caption{Absolute concentration (log copies/L of water) of cutthroat
+trout (\emph{O. clarkii}) as measured by qPCR before flow
+correction.\label{fig:qpcr}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/multispeciesTrends_flowcorrected.png}
+\caption{Trends across creeks and across time for each of four salmonid
+species as estimated by eDNA analysis. Points represent posterior means
+for the time-series model and error bars represent the 75\% posterior
+confidence interval. Colors indicate station upstream or downstream of
+an under-road culvert. Grey shading indicates the time period in which
+the culvert in the treatment creek (Padden Creek) was
+replaced.\label{fig:ts}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/culvert_effect_flowcorrected.png}
+\caption{The effect of culvert on salmonid abundance summed across all
+species and creeks by time. The y-axis shows the difference between
+upstream and downstream concentrations, normalized by upstream
+concentration. The box boundaries correspond to the 25th and 75th
+percentiles; the whiskers correspond to 1.5 times the interquartile
+range. Here, negative values imply that eDNA concentrations are higher
+downstream than upstream. Samples with very low eDNA mass flow rates
+(\textless{} 150 copies/s) were removed before plotting to remove
+extreme proportional values due to large
+denominators.\label{fig:culverts}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/construction_legend.png}
+\caption{Effect of Construction on Salmonid DNA Concentrations in Padden
+Creek. Error bars show 75\% confidence intervals of the normalized
+difference between upstream and downstream DNA concentrations. Grey
+shading shows when construction started through the end of sampling.
+Construction ended in early October 2022. Sockeye/kokanee salmon
+(\emph{O. nerka}) was only found in Padden Creek so other creeks are not
+shown. Samples with very low eDNA mass flow rates (\textless{} 150
+copies/s) were removed before plotting to remove extreme proportional
+values due to large denomenators.\label{fig:construction}}
+\end{figure}
