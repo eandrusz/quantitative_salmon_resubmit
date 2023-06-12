@@ -1,0 +1,127 @@
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/map_gauges.png}
+\caption{Figure S1.1. Location of flow gauges compared to sampling
+locations for Chuckanut, Padden, and Squalicum
+Creeks.\label{fig:gaugemap}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/historical_flow_year_avg_sampling.png}
+\caption{Figure S1.2. Daily average discharge from 2015-2020 in creeks
+from USGS gauges. Blue dots show the discharge time of sampling during
+the course of this study (2021-2022) for time points where gauges were
+online (note the missing data points after December through February in
+Chuckanut and Squalicum Creeks).\label{fig:dischargesupp}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/flow_by_source.png}
+\caption{Figure S1.3. Comparison of different ways flow data can be used
+to correct eDNA concentrations. In the main text, the correction factor
+is used. Note that for Padden Creek, the ``Correction Factor'' method is
+the same as the ``Closest Value'' method. Also note that for Chuckanut
+and Squalicum Creeks, no data exist for cloest value, daily average, or
+monthly average after November 2021 when the gauges went
+offline.\label{fig:dischargemethod}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/TimeLine.pdf}
+\caption{Figure S1.4. Timeline of runs for migrating species, stocking
+of Lake Padden, and construction at the intervention site (Padden
+Creek). Note, the dates of kokanee stocking do not include days, just
+the month and year. For plotting purposes, they are shown as the
+15th.\label{fig:timeline}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/check_controls.png}
+\caption{Figure S1.5. Proporiton of annotated reads found in positive
+controls. Grey colors are the three species of kangaroo used for
+positive controls and are what should be in each sample. Orange species
+should not be in the positive controls and indicate low level
+contamination from environmental samples.\label{fig:controls1}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/check_controls2.png}
+\caption{Figure S1.6. Proporiton of annotated reads found in
+environmental samples with positive control. Grey colors are
+non-kangaroo reads and therefore and are what should be in each sample.
+Orange species are kangaroo reads and therefore should not be in the
+environmental samples and indicate low level contamination from positive
+controls.\label{fig:controls2}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/read_depths.png}
+\caption{Figure S1.7. Read depth of samples colored by creek. Dashed
+line shows median read depth (87,698 reads).\label{fig:readdepth}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/ALLTAXA_controls.png}
+\caption{Figure S1.8. Heat map of all species found in control creeks in
+at least ten environmental samples.\label{fig:controlreads}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/ALLTAXA_padden.png}
+\caption{Figure S1.9. Heat map of all species found in Padden Creek in
+at least ten environmental samples.\label{fig:paddenreads}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/mock_internal_calibration.png}
+\caption{Figure S1.10. Intercalibration of mock communities used to
+correct environmental samples for amplification
+bias.\label{fig:intercal}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/mock_internal_calibration_compare_alphas.png}
+\caption{Figure S1.11. Estimated alpha values of salmonid species with
+different calibrations of the mock communities. Each color represents a
+different subset of mock community data treated as `true' to calibrate
+the remainder of the mock community data.\label{fig:alphas}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/SupplementalFigures/culvert_boxplot_separated.png}
+\caption{Figure S1.12. The effect of culvert on salmonid abundance
+separated by species and creeks across time. The y-axis shows the
+log-fold change in eDNA mass flow rate (copies/s) between upstream and
+downstream, normalized by upstream mass flow rate. The box boundaries
+correspond to the 25th and 75th percentiles; the whiskers correspond to
+1.5 times the interquartile range. Here, negative values imply that eDNA
+mass flow rates are higher downstream than upstream. Samples with very
+low eDNA mass flow rates (\textless{} 150 copies/s) were removed before
+plotting to remove extreme proportional values due to large
+denominators. Grey points indicate times when no samples were taken.
+Black points indicate times when samples were taken, but no target DNA
+was found in either upstream or downstream samples and therefore the
+log-fold change can not be calculated.\label{fig:culvertsspeciescreek}}
+\end{figure}

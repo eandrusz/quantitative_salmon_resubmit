@@ -1,0 +1,188 @@
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/SiteMap.png}
+\caption{Map of sampling locations near Bellingham, Washington. \DIFaddbeginFL \DIFaddFL{In the
+red subset, triangles designate the downstream sampling location and
+circles designate the upstream sampling location. Padden Creek (the
+treatment creek where the two culverts were replaced) is shown in the
+blue subset where downstream is a triangle, upstream of the first
+culvert (SR-11) is a circle, and upstream of the second culvert (I-5) is
+a square.}\DIFaddendFL \label{fig:map}}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/flow_gauges.png}
+\caption{Discharge (m\textsuperscript{3}/s) in Padden \DIFaddbeginFL \DIFaddFL{(USGS Gauge
+12201905)}\DIFaddendFL , Chuckanut \DIFaddbeginFL \DIFaddFL{(USGS Gauge 12201700)}\DIFaddendFL , and Squalicum \DIFaddbeginFL \DIFaddFL{(USGS Gauge
+12204010) }\DIFaddendFL Creeks over the course of sampling. \DIFdelbeginFL \DIFdelFL{Open circles show the days
+when sampling occurred. }\DIFdelendFL Gauges at Chuckanut and
+Squalicum Creek went offline in November 2021 after a major storm event.
+Portage Creek and Barnes Creek did not have stream gauges. \DIFdelbeginFL %DIFDELCMD < \label{fig:flows}}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD <
+
+%DIFDELCMD < %%%
+\DIFdel{Additionally, in the creek of interest, Padden Creek, rainbow trout
+(}\emph{\DIFdel{O. mykiss}}%DIFAUXCMD
+\DIFdel{) were stocked in Lake Padden, approximately 1.5 km
+upstream of the sampling sites. Occasionally, cutthroat trout (}\emph{\DIFdel{O.
+clarkii}}%DIFAUXCMD
+\DIFdel{) and kokanee salmon (}\emph{\DIFdel{O. nerka}}%DIFAUXCMD
+\DIFdel{) have been stocked in the
+past as well. During the course of the study, a total of 10}\DIFdelend \DIFaddbegin \DIFadd{Circles
+designate the day of sampling. For Padden Creek}\DIFaddend , \DIFdelbegin \DIFdel{000 rainbow
+trout were stocked in April and May 2021 }\DIFdelend \DIFaddbegin \DIFadd{the nearest 15 minute
+interval of flow was used. For Chuckanut }\DIFaddend and \DIFdelbegin \DIFdel{30}\DIFdelend \DIFaddbegin \DIFadd{Squalicum Creeks}\DIFaddend , \DIFdelbegin \DIFdel{000 kokanee salmon were
+stocked in May 2021 (Supplemental Figure }\DIFdelend \DIFaddbegin \DIFadd{the
+correction factor from five years of historical data from Padden Creek
+was used (see methods section and Supplemental Figures 2 and
+}\DIFaddend 3\DIFdelbegin \DIFdel{). Despite the stocking of
+30,000 kokanee salmon in May in Lake Padden, }\emph{\DIFdel{O. nerka}} %DIFAUXCMD
+\DIFdel{was only
+detected by metabarcoding in March 2021, August 2021, and then November
+2021 through February 2022 (see results below). Importantly, this
+suggests that Lake Padden is far enough upstream that the eDNA signal at
+the sampling sites by the culvert is not a result of stocking the lake
+1.5 km upstream (see discussion for more information).
+}\DIFdelend \DIFaddbegin \DIFadd{).}\label{fig:flows}}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics{../Output/Figures/conceptual_figure.png}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics{../Output/Figures/NGN_Fig3.png}
+\DIFaddendFL \caption{Conceptual figure of different datasets and models used for
+analyses. * indicates that here, biological replicates are different
+dilutions of the synthetic gBlock. ** indicates that for most samples,
+only one technical replicate was sequenced but for one sample per
+sampling month, three \DIFdelbeginFL \DIFdelFL{techincal }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{technical }\DIFaddendFL replicates were sequenced to check for
+consistency across replicates. *** indicates that here, the three
+biological replicates indicate three different mock communities with
+varying species compositions, but all containing the four salmonids of
+interest. \DIFaddbeginFL \DIFaddFL{Created with BioRender.com.}\DIFaddendFL \label{fig:conceptualfig}}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics{../Output/Figures/20221123_proportions_after_qm.png}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics{../Output/Figures/proportions_after_qm_nopadden.png}
+\DIFaddendFL \caption{Compositions of salmonid DNA \DIFaddbeginFL \DIFaddFL{in control creeks }\DIFaddendFL as determined by
+metabarcoding after correction for amplification bias. \DIFdelbeginFL \DIFdelFL{Note }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Grey shading
+denotes time points }\DIFaddendFL that \DIFdelbeginFL \DIFdelFL{no sampling occurred
+}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{were not sampled (Barnes and Chuckanut Creeks
+after March 2023 and Squalicum Creek }\DIFaddendFL in September 2021 \DIFdelbeginFL \DIFdelFL{at Squalicum Creek because the creek }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{which }\DIFaddendFL was dry\DIFaddbeginFL \DIFaddFL{)}\DIFaddendFL .
+The empty bars in the Barnes upstream sites indicate that no salmonid
+DNA was found at those time points.\DIFdelbeginFL %DIFDELCMD < \label{fig:qm}%%%
+\DIFdelendFL \DIFaddbeginFL \label{fig:qm_controls}\DIFaddendFL }
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/proportions_after_qm_padden.png}
+\caption{\DIFaddFL{Compositions of salmonid DNA in Padden Creek as determined by
+metabarcoding after correction for amplification bias. The empty bar in
+the March 2023 in Up5 indicates that no salmonid DNA was found. The
+vertical dashed lines indicates the time period in which the culverts
+were replaced (SR-11 and I-5, respectively).}\label{fig:qm_padden}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics{../Output/Figures/20230105_modeled_cut_qpcr_updown-line.png}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics{../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png}
+\DIFaddendFL \caption{Absolute \DIFdelbeginFL \DIFdelFL{concentration }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{mass flow rate }\DIFaddendFL (log copies/\DIFdelbeginFL \DIFdelFL{L of water}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{s}\DIFaddendFL ) of \DIFdelbeginFL \emph{\DIFdelFL{O.
+clarkii}} %DIFAUXCMD
+\DIFdelFL{(}\DIFdelendFL cutthroat trout
+\DIFaddbeginFL \DIFaddFL{(}\emph{\DIFaddFL{O. clarkii}}\DIFaddendFL ) as measured by qPCR \DIFdelbeginFL \DIFdelFL{before }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{after }\DIFaddendFL flow correction. \DIFaddbeginFL \DIFaddFL{Note that
+Barnes Creek and Chuckanut Creek were not sampled after February 2022.
+Red crosses show the limit of detection for each species and time point,
+which changes with flow rate and total volume filtered per
+sample.}\DIFaddendFL \label{fig:qpcr}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics{../Output/Figures/20221216_multispeciesTrends_flowcorrected.png}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics{../Output/Figures/multispeciesTrends_flowcorrected.png}
+\DIFaddendFL \caption{Trends \DIFdelbeginFL \DIFdelFL{across creeks and across time }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{in mass flow rate (log copies/s) }\DIFaddendFL for each of four
+salmonid species \DIFaddbeginFL \DIFaddFL{across creeks and across time }\DIFaddendFL as estimated by eDNA
+analysis. \DIFdelbeginFL \DIFdelFL{Light-colored dots are }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Points represent }\DIFaddendFL posterior means \DIFdelbeginFL \DIFdelFL{derived by expanding the calibrated metabarcoding proportions as
+described in the main text; darker-colored dots are posterior means }\DIFdelendFL for the \DIFdelbeginFL \DIFdelFL{time-series }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{linear mixed effects
+}\DIFaddendFL model \DIFdelbeginFL \DIFdelFL{of }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{and error bars represent }\DIFaddendFL the \DIFdelbeginFL \DIFdelFL{same}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{95\% posterior confidence interval}\DIFaddendFL .
+Colors indicate station upstream \DIFaddbeginFL \DIFaddFL{(black) }\DIFaddendFL or downstream \DIFaddbeginFL \DIFaddFL{(grey) }\DIFaddendFL of \DIFaddbeginFL \DIFaddFL{the
+culvert. Padden has }\DIFaddendFL an \DIFdelbeginFL \DIFdelFL{under-road }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{additional sampling site upstream of the second
+}\DIFaddendFL culvert \DIFaddbeginFL \DIFaddFL{(I-5; blue)}\DIFaddendFL . \DIFdelbeginFL \DIFdelFL{75\% and 95\% posterior CI plotted
+for each time point. Grey }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Yellow }\DIFaddendFL shading indicates the time period in which
+the \DIFdelbeginFL \DIFdelFL{culvert }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{culverts }\DIFaddendFL in the treatment creek (Padden Creek) \DIFdelbeginFL \DIFdelFL{was
+}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{were }\DIFaddendFL replaced. \DIFaddbeginFL \DIFaddFL{Grey
+shading indicates time points that were not sampled (Barnes and
+Chuckanut after February 2022). Time points with no data had no
+sequencing reads corresponding to that species or no quantifiable
+cutthroat DNA by qPCR.}\DIFaddendFL \label{fig:ts}}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics{../Output/Figures/20221216_culvert_effect_flowcorrected.png}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics{../Output/Figures/culvert_boxplot_passable.png}
+\DIFaddendFL \caption{The effect of culvert on salmonid abundance summed across all
+species and creeks by time. The y-axis shows the \DIFdelbeginFL \DIFdelFL{difference }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{log-fold change in eDNA
+mass flow rate (copies/s) }\DIFaddendFL between upstream and downstream\DIFdelbeginFL \DIFdelFL{concentrations}\DIFdelendFL , normalized by
+\DIFdelbeginFL \DIFdelFL{downstream
+concentration}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{upstream mass flow rate}\DIFaddendFL . The box boundaries correspond to the 25th and
+75th percentiles; the whiskers correspond to 1.5 times the interquartile
+range. Here, negative values imply that eDNA \DIFdelbeginFL \DIFdelFL{concentrations }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{mass flow rates }\DIFaddendFL are higher
+downstream than upstream. \DIFaddbeginFL \DIFaddFL{Samples with very low eDNA mass flow rates
+(\textless{} 150 copies/s) were removed before plotting to remove
+extreme proportional values due to large denominators. Grey stars
+indicate times when no samples were taken.}\DIFaddendFL \label{fig:culverts}}
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\includegraphics{../Output/Figures/culvert_means_flow.png}
+\caption{\DIFaddFL{Log-fold change in eDNA mass flow rate over time. Size of
+circles corresponds to the discharge in each creek at each time point.
+Color of circles corresponds to each creek. Each creek and time point
+has up to four circles of the same color for the four salmonid
+species.}\label{fig:culverts_flow}}
+
+\end{figure}
+\efloatseparator
+ 
+\begin{figure}
+\centering
+\DIFdelbeginFL %DIFDELCMD < \includegraphics{../Output/Figures/20221219_construction_plot.png}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics{../Output/Figures/culvert_padden_controls.png}
+\DIFaddendFL \caption{Effect of Construction on \DIFdelbeginFL \DIFdelFL{Salmonid DNA Concentrations }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Log-Fold Change }\DIFaddendFL in \DIFaddbeginFL \DIFaddFL{eDNA Flow Rate
+Upstream to Downstream in }\DIFaddendFL Padden Creek. \DIFdelbeginFL \DIFdelFL{Error bars show 95\% confidence intervals of the normalized
+difference between upstream and downstream DNA concentrations. Grey
+}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Yellow }\DIFaddendFL shading shows when
+construction started \DIFdelbeginFL \DIFdelFL{through the end }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{for each }\DIFaddendFL of \DIFdelbeginFL \DIFdelFL{sampling}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{the two culverts}\DIFaddendFL . \DIFdelbeginFL \DIFdelFL{Construction ended }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Grey points show the
+corresponding log-fold changes }\DIFaddendFL in \DIFdelbeginFL \DIFdelFL{early October 2022. }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{control creeks and black points show
+Padden Creek. Sockeye/kokanee salmon (}\DIFaddendFL \emph{O. nerka}\DIFaddbeginFL \DIFaddFL{) }\DIFaddendFL was only found in
+Padden Creek so other creeks are not shown. \DIFaddbeginFL \DIFaddFL{Samples with very low eDNA
+mass flow rates (\textless{} 150 copies/s) were removed before plotting
+to remove extreme proportional values due to large
+denomenators.}\DIFaddendFL \label{fig:construction}}
+
+\end{figure}

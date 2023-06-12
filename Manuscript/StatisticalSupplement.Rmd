@@ -22,6 +22,9 @@ header-includes:
 - \linenumbers
 - \usepackage{setspace}\doublespacing
 - \usepackage{gensymb}
+- \usepackage{caption}   
+- \captionsetup[figure]{labelformat=empty}
+- \usepackage[nomarkers, nolists, figuresonly]{endfloat}
 bibliography: references.bib
 csl: ecological-applications.csl
 ---
@@ -40,11 +43,11 @@ options(mc.cores = parallel::detectCores())
 
 Our analysis depends upon a set of quantitative models, each linking our observations of metabarcoding reads or qPCR cycle-threshold values to an underlying concentration of target-species DNA in water samples.
 
-In summary, we (1) use a mock community with a known composition to calibrate our environmental metabarcoding data as described in @shelton. The result is a set of estimated proportions of DNA from each species in each sample. We then (2) relate qPCR cycle-threshold values for a reference species (here, cutthroat trout (*O. clarkii*)) from the same set of samples to a standard curve to yield quantitative estimates of the concentration of our reference species in each sample. We (3) use these absolute estimates of DNA concentration to expand the metabarcoding-derived proportion data into a complete set of quantitative estimates of DNA concentrations for each species in each sample. We account for the variable water-flow-rates of the sampled creeks by converting these concentrations from units of copies/L into units of copies/s, given an flow rate in L/s. Finally, we (4) construct a time-series model for these species-specific concentrations, sharing information across creeks and time-points. We detail the statistical details of these steps below.
+In summary, we (1) use a mock community with a known composition to calibrate our environmental metabarcoding data as described in [@shelton]. The result is a set of estimated proportions of DNA from each species in each sample. We then (2) relate qPCR cycle-threshold values for a reference species (here, cutthroat trout (*O. clarkii*)) from the same set of samples to a standard curve to yield quantitative estimates of the concentration of our reference species in each sample. We (3) use these absolute estimates of DNA concentration to expand the metabarcoding-derived proportion data into a complete set of quantitative estimates of DNA concentrations for each species in each sample. We account for the variable water-flow-rates of the sampled creeks by converting these concentrations from units of copies/L into units of copies/s, given an flow rate in L/s. Finally, we (4) construct a model describing changes in these species-specific concentrations over time. We give the statistical details of these steps below.
 
 ## Calibration with a Mock Community
 
-See @shelton; @mclaren2019; @silverman2021 for similar analyses. 
+See @shelton; @mclaren2019; @silverman2021 for similar analyses.
 
 For ease of computation, we ran the metabarcoding-calibration model on data for each of our five creeks separately, using the same mock communities to calibrate each.
 
@@ -58,9 +61,9 @@ For all samples $i$, on qPCR plates $j$, we either observe ($z_{i,j} = 0$ or do 
 
 We model the probability of detection $P(z = 1)$) as a linear function of concentration and slope parameter $\phi$, ($P(z = 1) = \theta = c\phi$), with a logit transform to constrain the inferred probability to between 0 and 1.
 
-For those samples that amplify ($z = 1$), we model the observed Ct value ($y$) as a linear function of our parameter of interest, the log-concentration of target-species DNA under analysis ($c$). We treat $y$ as drawn from a normal distribution $y \sim N(\mu_{i,j}, \sigma_{i,j})$), where each triplicate sample on each qPCR plate has its own estimated mean and standard deviation. The means are estimated as a straightforward linear model, $mu = \beta_{0,j} + \beta_{1,j}c$, but we allow the standard deviation to vary as a linear function of log-concentration so as to accurately capture decreasing precision with decreasing concentration: $\sigma = e^{\gamma_{0} + \gamma_{1,j}c}$; we estimate these parameters as an exponent to constrain $\sigma > 0$.
+For those samples that amplify ($z = 1$), we model the observed Ct value ($y$) as a linear function of our parameter of interest, the log-concentration of target-species DNA under analysis ($c$). We treat $y$ as drawn from a normal distribution $y \sim N(\mu_{i,j}, \sigma_{i,j})$), where each triplicate sample on each qPCR plate has its own estimated mean and standard deviation. The means are estimated as a straightforward linear model, $\mu = \beta_{0,j} + \beta_{1,j}c$, but we allow the standard deviation to vary as a linear function of log-concentration so as to accurately capture decreasing precision with decreasing concentration: $\sigma = e^{\gamma_{0} + \gamma_{1,j}c}$; we estimate these parameters as an exponent to constrain $\sigma > 0$.
 
-Samples with known concentrations (i.e., standards) were fit jointly with unknown samples (i.e., environmental samples); because qPCR plate identity was shared among all environmental samples and standards within a plate, this has the effect of applying plate-specific slope and intercept values for the standard curve to each of the environmental samples on the plate.
+Samples with known concentrations (i.e., standards) were fit jointly with unknown samples (i.e., environmental samples); because qPCR plate identity was shared among all environmental samples and standards within a plate, this has the effect of applying plate-specific slope and intercept values for the standard curve to each of the environmental samples on the plate (Figure S2.\ref{fig:qpcrmodel}).
 
 We apply moderately informative priors that make use of background information in hand. For example, because qPCR standard curves of all kinds have slopes near -3, this slope becomes our background expectation as embodied in the prior on $\beta_1$, but the standard deviation of that prior leaves plenty of room for this background to be overwhelmed by the observed data. The same logic applies to the intercept of the standard curve, which in qPCR (for any given species) generally falls near 39 cycles, an expectation that we formalize by having $\beta_0$ drawn from a normal distribution with $\mu = 39$ and $\sigma = 3$.
 
@@ -68,24 +71,25 @@ Taken together with priors, the model is:
 
 ```{=tex}
 \begin{gather*}
-z_{i,j} \sim bernoulli(\theta_{i,j}) \\
-\theta_{i,j} = logit^{-1}(\phi*c_{i,j}) \\[4mm]
-y_{i,j} \sim normal(\mu_{i,j}, \sigma_{i,j})   \text{    if } z_{i,j} = 1 \\
-\mu_{i,j} = \beta_{0,j} + \beta_{1,j} * c_{i,j} \\
-\sigma_{i,j} = e^{\gamma_{0}  + \gamma_{1,j}*c_{i,j}} \\[4mm]
+z_{i,j} \sim Bernoulli(\theta_{i,j}) \\
+\theta_{i,j} = logit^{-1}(\phi c_{i,j}) \\[4mm]
+y_{i,j} \sim Normal(\mu_{i,j}, \sigma_{i,j})   \text{    if } z_{i,j} = 1 \\
+\mu_{i,j} = \beta_{0,j} + \beta_{1,j} c_{i,j} \\
+\sigma_{i,j} = e^{\gamma_{0}  + \gamma_{1,j} c_{i,j}} \\[4mm]
 \beta_{0} \sim normal(39, 3) \\
 \beta_{1} \sim normal(-3, 1) \\
 \gamma_{1} \sim normal(0,5) \\
 \gamma_{0} \sim normal(-2,1)
 \end{gather*}
 ```
-![Example of 2500 samples from the joint posterior distribution of the model fit for a single representative qPCR plate. Red dots are standard-curve observations with known starting concentrations. The spread of black dots (posterior samples) indicates the shape of the calibration curve, with standard deviation increasing as concentration decreases.](../Output/SupplementalFigures/qPCR_calibration_supplemental.png)
+
+![Figure S2.1. Example of 2500 samples from the joint posterior distribution of the model fit for a single representative qPCR plate. Red dots are standard-curve observations with known starting concentrations. The spread of black dots (posterior samples) indicates the shape of the calibration curve, with standard deviation increasing as concentration decreases.\label{fig:qpcrmodel}](../Output/SupplementalFigures/qPCR_calibration_supplemental.png)
 
 Model Diagnostics: 3 chains, 2500 iterations, for all parameters, $\hat{R} \leq 1.002$.
 
 ## Expanding Proportions into Absolute Abundances
 
-See Pont et al. 2022; McClaren 2022 pre-print for examples of similar expansions.
+See @pont2022a and @mclaren (preprint) for examples of similar expansions.
 
 As described in the main text, calibrated metabarcoding analysis yielded quantitative estimates of the proportions of species' DNA in environmental samples prior to PCR.
 
@@ -93,52 +97,265 @@ We then converted these proportions into absolute abundances by expansion, in li
 
 We transformed the resulting abundances to account for the creeks' flow-rates as described in the main text.
 
-Ideally, we would have fit a joint model that simultaneously estimated species proportions (metabarcoding), absolute concentrations (qPCR), and developed the time-series trends for all species. As a practical computational matter, we had to create these models individually, which entailed some loss of parameter variance along the way. For the time-series model described below, we used posterior means from the metabarcoding * qPCR model as observations, rather than being able to use the full posteriors for each input to the model. We deemed this acceptable because our metabarcoding proportions were quite precisely estimated: for example, in our focal Padden Creek, the coefficient of variation for estimated proportions of our reference species (*O. clarkii*) ranged from 0.008 to 0.25.
+Ideally, we would have fit a joint model that simultaneously estimated species proportions (metabarcoding), absolute concentrations (qPCR), and developed the time-series trends for all species. As a practical computational matter, we had to create these models individually, which entailed some loss of information about parameter variability and cross correlation. For the mixed-effects model describing trends over time (described below), we used the product of posterior means from the metabarcoding and the concentrations of the qPCR model as observations, rather than being able to use the full posteriors for each input to the model. We deemed this acceptable because our metabarcoding proportions were quite precisely estimated: for example, in our focal Padden Creek, the coefficient of variation for estimated proportions of our reference species (*O. clarkii*) ranged from 0.008 to 0.25.
 
-## Time-Series Model
+## Modeling Changes in Concentration over Time
 
 At a given station in a given creek, some DNA concentration exists for each species. For simplicity, we focus on a single species and a single station (downstream or upstream) for the moment.
 
 Our observations of the (log) DNA concentration in creek $i$ at time $t$ are distributed as $Y_{i,t} \sim \mathcal{N}(\mu_{i,t},\,\sigma^{2})$. More complex versions of the model may let $\sigma$ vary across creeks, time points, species, or with environmental covariates of interest.
 
-We are interested in how the DNA concentration changes over time, so we assert that the expected value of DNA in a creek at time $t$, $\mu_{i,t}$, depends upon its value in the previous time step $t-1$, in some way. 
+We are interested in how the DNA concentration changes over time, so we model the expected value of DNA in a creek at time $t$, $\mu_{i,t}$.
 
-We can use a simple, first-order autoregressive (AR(1)) model with $\mu_{i,t}$ as a linear function of $\mu_{i,t-1}$ with slope $\beta$ and intercept $\alpha$. Here, $\beta$ reflects the degree of autocorrelation between time steps $t$ and $t-1$; a stationary model requires $|\beta| \leq 1$. $\alpha$ estimates the shift in the mean, after accounting for autocorrelation, at a given creek and time-point. 
+We considered three ways of modeling the salmonid eDNA data, each in a Bayesian framework, but each treating non-independence among time points somewhat differently:
 
-However, to estimate the process error on the autoregressive term explicitly, we can treat the product of $\beta\mu_{i,t-1}$ as being the expected value of a normal distribution with variance $\phi^2$, the individual realizations of which are model term $\epsilon_{i,t}$
-
-We can add observations from the two stations per creek -- upstream and downstream of the culvert -- simply by adding a subscript to the model. We let $d$ be a subscript indicating station ($d = 1 \text{ if downstream, } d = 2 \text{ if upstream}$). A final model term, $\eta$, captures the difference in log-DNA concentration between upstream and downstream stations within a creek; we set $\eta_{d = 1} = 0$ such that the value of $\eta_{d = 2}$ is the effect of the culvert within a given creek at a given time. The effect of construction in our focal Padden Creek, then, is the change in $\eta$ after construction vs. prior to construction.
-
-For each species $j$ -- the subscript for which we omit here for clarity -- we have a single overall model of the change in eDNA concentration among species, creeks, timepoints, and stations:
-
+-   A linear auto-regressive (AR(1)) model, written in `stan`. For each species in each creek, the expected concentration of eDNA of each month is a linear function of the expected value from the previous month. Within a species, the monthly autoregressive parameters are shared across creeks. For each species $j$ -- the subscript for which we omit here for clarity -- we have a single overall model of the change in eDNA concentration among species, creeks ($i$), timepoints ($t$), and stations ($d$).
 
 ```{=tex}
 \begin{align*}
-Y_{i,t,d} &\sim \mathcal{N}(\mu_{i,t,d},\,\sigma_{\text{obs}}^{2})\\
-\mu_{i,t,d} &= \alpha_{i,t} + \epsilon_{i,t,d} + \eta_{i,t,d}\\
-\epsilon_{i,t,d} &\sim \mathcal{N}(\beta\mu_{i,t-1,d},\, \phi^2)
+&Y_{i,t,d} \sim \mathcal{N}(\mu_{i,t,d},\,\sigma_{\text{obs}}^{2})\\
+&\mu_{i,t,d} = \alpha_{i,t} + \epsilon_{i,t,d} + \eta_{i,t,d}\\
+&\epsilon_{i,t,d} \sim \mathcal{N}(\beta\mu_{i,t-1,d},\, \phi^2)\\
+&\alpha_{i,t} \sim \mathcal{N}(\mu_{\alpha}, \sigma_{\alpha})\\
+&\beta \sim \mathcal{U}(-1, 1) \\
+&\sigma_{\text{obs}} \sim gamma(1,2) \\
+&\sigma_{\alpha} \sim gamma(1,2) \\
+&\eta \sim \mathcal{N}(\mu_{\eta}, 1) \\
+&\phi \sim gamma(1,2) \\
+&\bf{\mu_{\alpha}} \sim \mathcal{N}(0, 10) \\
+&\bf{\mu_{\alpha}} \sim \mathcal{N}(0, 5)
 \end{align*}
 ```
+-   A generalized additive model (GAM), written in `brms` (which itself writes a `stan` model). For each species in each creek, an independent set of spline (weighting) parameters describes the temporal trends in expected eDNA concentration; the number of spline knots is shared across species and creeks. We follow [@pedersen2019] to create a hierarchical GAM in which the expected value for each species in each creek at each time point is a spline function of time, time-by-creek, and time-by-station, with random effects for creek and station. Here, time-by-creek and time-by-station splines are centered, requiring additional fixed-effect terms for station and creek. Because no information is shared across species in this model, we fit the model each species independently.
 
-We complete the model by specifying the prior distributions from which each parameter is drawn, selecting weakly informative priors for each parameter.
+$$\mu_{idt} = \beta_0 + s(t) + s_{d}(t) + s_{i}(t) + s(d) + s(i) $$
 
-```{=tex}
-\begin{align*}
-\alpha_{i,t} &\sim \mathcal{N}(\mu_{\alpha}, \sigma_{\alpha})\\
-\beta &\sim \mathcal{U}(-1, 1) \\
-\sigma_{\text{obs}} &\sim gamma(1,2) \\
-\sigma_{\alpha} &\sim gamma(1,2) \\
-\eta &\sim \mathcal{N}(\mu_{\eta}, 1) \\
-\phi &\sim gamma(1,2) \\
-\bf{\mu_{\alpha}} &\sim \mathcal{N}(0, 10) \\
-\bf{\mu_{\alpha}} &\sim \mathcal{N}(0, 5)
-\end{align*}
+In `R` code using `brms`, this model is coded as
+
+    brm(
+      bf(
+        log(observed) ~ 
+                   s(time_idx, bs="cc") + 
+                   s(time_idx, by=station, m=1, bs="cc")+  #main effect, station
+                   s(station, bs="re") +  #random effect, station
+                   s(time_idx, by=creek, m=1, bs="cc")+  #main effect, creek
+                   s(creek, bs="re") + #random effect, creek
+      )
+    )
+
+-   A linear mixed-effects (LME) model, written in `rstanarm`. For each species in each creek, time (i.e., sampling month) is treated as a random effect. Each species-creek-month effect is treated as an independent draw from a common distribution.
+
+$$\mu_{ijdt} = \beta_0 + \beta_{1_{ij}} + Month*\beta_{2_{ij}} + \beta_{3_{ijdt}}$$
+
+In `R` code using `rstanarm`, this model is coded as
+
+    stan_glmer(log(observed) ~ (1 + time_idx|creek:species) + (1|station:creek:species:time_idx)
+
+Ultimately, the three models yielded very similar results (Figure S2.\ref{fig:comparemodels})). The LME model proved simplest and most flexible insofar as it could easily handle datasets with uneven sets of observations -- for example, cases in which a species was detected downstream of a barrier, but not upstream. We accordingly used the LME as the model for the analysis given in the main manuscript.
+
+![Figure S2.2. Comparison of three models (linear autoregressive, generalized additive model, and linear mixed effects model) shown for a subset of the data used in the main manuscript.\label{fig:comparemodels}](../Output/SupplementalFigures/stats_comparisonplot.pdf)
+
+```{r load_data, echo=FALSE, message=FALSE}
+# #| echo: false
+# 
+# library(tidyverse)
+# library(here)
+# library(mgcv)
+# library(brms)
+# library(gratia)
+# library(tidybayes)
+# library(rstan)
+# library(rstanarm)
+# options(mc.cores = parallel::detectCores())
+# library(GGally)
+# 
+# d <- readRDS(here("Output","20230505_abundance_flowcorrected.RDS")) %>% 
+#   filter(species != "Oncorhynchus nerka") %>% 
+#   filter(creek != "Barnes") %>% 
+#   filter(station != "Up5")
+# 
+# # d <- readRDS("/Users/elizabethandruszkiewicz/GoogleDrive/UW/GitHub/GRAVEYARD/NGN/NGNresubmit/Output/20230323_abundance_flowcorrected.RDS") %>% 
+# # #d <- readRDS(here("Output","20230505_abundance_flowcorrected.RDS")) %>% 
+# #   filter(species != "Oncorhynchus nerka") %>% 
+# #   filter(creek != "Barnes") 
+# 
+# d$creek_idx <- match(d$creek, unique(d$creek))
+# d$time_idx <- match(d$newtime, unique(d$newtime))
+# d$species_idx <- match(d$species, unique(d$species))
+# d$station_idx <- match(d$station, unique(d$station))
+# 
 ```
-To reflect (in part) the hierarchical structure of our data, we let our intercept terms, $\alpha$ be drawn from species-specific distributions, where each species has a different mean, but all species share a common variance.
+ 
+```{r, echo=FALSE, message=FALSE}
+# #| echo: false
+# #| messages: false
+# #AR(1)
+# 
+# 
+# SpeciesTable <- d %>% 
+#   dplyr::select(species, species_idx) %>% 
+#   distinct()
+# CreekTable <- d %>% 
+#   dplyr::select(creek, creek_idx) %>% 
+#   distinct()
+# TimeTable <- d %>% 
+#   dplyr::select(newtime, time_idx) %>% 
+#   distinct()
+# 
+# 
+# # create duplicate object, useful for filtering to subset, etc
+# f <- d %>% arrange(time_idx, creek_idx) %>% 
+#   ungroup() 
+#   # filter(station_idx == 1) %>%  #just look downstream
+#   # filter(log(meandnaconc) > 2.3) #impose minimum of 10 copies/L, because this is the approx limit of reliability
+# 
+# #find elements to flag as missing data
+# missing <- f %>% 
+#   dplyr::select(creek_idx, time_idx, species_idx) %>% 
+#   distinct() %>% 
+#   mutate(present = 1) %>% 
+#   right_join(expand_grid(creek_idx = 1:length(unique(f$creek_idx)),
+#                          time_idx = 1:length(unique(f$time_idx)),
+#                          # station_idx = 1:length(unique(f$station_idx)),
+#                          species_idx = 1:length(unique(f$species_idx)))) %>% 
+#   filter(is.na(present)) %>% 
+#   dplyr::select(-present) %>% 
+#   expand_grid(station_idx = 1:length(unique(f$station_idx)))
+#   
+# 
+# #assign small values in place of zeros for missing data. 
+# set.seed(108)
+# missing <- missing %>% 
+#   mutate(meandnaconcflow = rlnorm(n(), -2, 0.5)) %>%  #slot in small values in place of zeros
+#   left_join(SpeciesTable) %>% 
+#   left_join(CreekTable) %>% 
+#   left_join(TimeTable)
+# 
+# f <- f %>%
+#   full_join(missing)
+# 
+# # add construction index
+# padden_idx <- f %>% filter(creek == "Padden") %>% dplyr::select(creek, creek_idx) %>% distinct() %>% pull(creek_idx)
+# construction <- which(f$creek_idx == padden_idx & f$time_idx %in% c(7:12))
+# f$construction_idx <- 1
+# f$construction_idx[construction] <- 2
+#   
+# 
+# #format for stan input
+# stan_data <- list(
+#   Nobs = nrow(f),
+#   Ntime = length(unique(f$time_idx)),
+#   Ncreek = length(unique(f$creek_idx)),
+#   Nstations = length(unique(f$station_idx)),
+#   Nspecies = length(unique(f$species_idx)),
+#   Nconstruction = length(unique(f$construction_idx)),
+#   MinconstructionTimepoint = f[f$construction_idx==2,]$time_idx %>% min(),
+#   NconstructionTimepoints = f[f$construction_idx==2,]$time_idx %>% unique() %>% length(),
+#   time_idx = f$time_idx,
+#   creek_idx = f$creek_idx,
+#   station_idx = f$station_idx,
+#   species_idx = f$species_idx,
+#   construction_idx = f$construction_idx,
+#   y_logeDNA = log(f$meandnaconcflow)
+#   )
+# 
+# #######RUN Stan Model#######
+# #here("Scripts/timeseries_model/timeSeries_20230519.stan")
+# stanMod = stan(file = here("Scripts","timeSeries_20230519.stan"), data = stan_data,
+#                        verbose = FALSE, chains = 3, thin = 1,
+#                        warmup = 2000, iter = 3500,
+#                        control = list(adapt_init_buffer = 175,
+#                                       max_treedepth=12,
+#                                       stepsize=0.01,
+#                                       adapt_delta=0.7,
+#                                       metric="diag_e"),
+#                        refresh = 10,
+#                        boost_lib = NULL
+# )
+# 
+# 
+# resOut <- expand_grid(time_idx = 1:length(unique(f$time_idx)),
+#                       station_idx = 1:length(unique(f$station_idx)),
+#                       species_idx = 1:length(unique(f$species_idx)),
+#                       creek_idx = 1:length(unique(f$creek_idx))) %>%
+#   mutate(mean_est = rstan::summary(stanMod, par = "mu")$summary[,1],
+#          ci25 = rstan::summary(stanMod, par = "mu")$summary[,5],
+#          ci75 = rstan::summary(stanMod, par = "mu")$summary[,7]) %>%
+#   left_join(f %>% dplyr::select(creek, species, creek_idx, species_idx) %>% distinct())
+# 
+#   #right_join(f %>% dplyr::select(meandnaconc, station_idx, time_idx, creek_idx, species_idx)) %>%
+#   # right_join(f %>% dplyr::select(meandnaconcflow, station_idx, time_idx, creek_idx, species_idx), multiple = "all") %>%
+#   # left_join(data.frame(sigma_dna = rstan::summary(s, par = "sigma_dna")$summary[,1],
+#   #                      species_idx = 1:1:length(unique(f$species_idx))))
+# 
+# 
+# Mclarkii_stan_means <- resOut %>%
+#   filter(species == "Oncorhynchus clarkii") %>%
+#   group_by(time_idx, creek, station_idx) %>%
+#   summarise(mean_est = mean(mean_est)) %>%
+#   left_join(CreekTable)
+# 
+# write_rds(Mclarkii_stan_means, here("Output", "supplemental_AR_model.RDS"))
+# 
+```
+ 
+```{r, echo=FALSE, message=FALSE}
+# #| echo: false
+# #| messages: false
+# 
+# #GAM
+# 
+# Oclarkii_GAM <- brm(bf(log(meandnaconcflow) ~ 
+#                s(time_idx, bs="cc") + 
+#                s(time_idx, by=station, m=1, bs="cc")+  #main effect, station
+#                s(station, bs="re") +  #random effect, station
+#                s(time_idx, by=creek, m=1, bs="cc")+  #main effect, creek
+#                s(creek, bs="re") + #random effect, creek
+#                (1 | creek + station + time_idx) ),  
+#           data = d %>% filter(species == "Oncorhynchus clarkii"), family = gaussian(), cores = 4, seed = 17,
+#           iter = 1000, warmup = 500, thin = 10, refresh = 100,
+#           control = list(adapt_delta = 0.99),
+#           silent = 0)
+#           #save_model = here("Output/modelOutput/m5_clarkii.stan"))
+# 
+```
 
-This model shares enough information across time points (within a creek) and across creeks (within a time point) that we can use it to infer DNA concentrations that we do not actually observe -- we treat the temporal/spatial points to be inferred as missing data, parameters to be estimated by the larger model.
-
-Model Diagnostics: 3 chains, 3500 iterations, warmup = 1000. Total warmup draws: 7500. For all parameters, $\hat{R} \leq 1.02$.
-
+```{r, echo=FALSE, message=FALSE}
+# #| echo: false
+# #| messages: false
+# 
+# #LME
+# 
+# Oclarkii_LME <- stan_glmer(log(meandnaconcflow) ~ (1 + newtime|creek:species) + (1|station:creek:species:newtime),
+#                  data = d %>% filter(species == "Oncorhynchus clarkii"))
+# 
+# ```
+# 
+# ```{r compare, echo=FALSE, message=FALSE}
+# #| echo: false
+# #| messages: false
+# 
+# 
+# combined_estimates <- d %>% 
+#   left_join(TimeTable) %>% 
+#   filter(species == "Oncorhynchus clarkii") %>% 
+#   select(time_idx, creek_idx, station_idx) %>% 
+#   mutate(LMEpredict = colMeans(posterior_predict(Oclarkii_LME))) %>% 
+#   mutate(GAMpredict = colMeans(posterior_predict(Oclarkii_GAM))) %>% 
+#   group_by(time_idx, creek_idx, station_idx) %>% 
+#   summarise(LME_mean = mean(LMEpredict),
+#             GAM_mean = mean(GAMpredict)) %>% 
+#    left_join(Mclarkii_stan_means) %>% 
+#    rename(AR_mean = mean_est)
+#   
+# 
+# (comparisonPlot <- combined_estimates %>% 
+#   ungroup() %>% 
+#   select(AR_mean, GAM_mean, LME_mean) %>% 
+#   #select(GAM_mean, LME_mean) %>% 
+#     ggpairs())
+# 
+# ggsave(comparisonPlot, file = here("Output", "SupplementalFigures","stats_comparisonplot.pdf"))             
+```
 
 ## References
