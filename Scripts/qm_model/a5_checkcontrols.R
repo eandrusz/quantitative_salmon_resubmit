@@ -25,7 +25,10 @@ kangaroo <- taxatable %>%
   group_by(Sample_name) %>% 
   mutate(ReadDepth = sum(totalReads)) %>% 
   mutate(propReads = totalReads/ReadDepth) %>% 
-  mutate(Sample_name = str_replace(Sample_name, "MiFish.Kangaroo.", ""))
+  mutate(Sample_name = str_replace(Sample_name, "MiFish.Kangaroo.", "")) %>% 
+  mutate(Sample_name = case_when(Sample_name == "Kangaroo" ~ "Run 13",
+                                   Sample_name == "Kangaroo-0522" ~ "Run 14",
+                                   TRUE ~ Sample_name))
 
 kangaroo %>% 
   ggplot(aes(x=Sample_name, y=propReads, fill=species)) +

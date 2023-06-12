@@ -81,8 +81,8 @@ ggplot(cut_modeled_conc_plot, aes(x = newtime, y = log(mean_concentration_est), 
   geom_point() +
   stat_smooth(method = "loess", span=0.5, aes(group=station)) +
   geom_segment(aes(x = newtime, xend = newtime, y = log(ci25_concentration_est), yend = log(ci75_concentration_est))) +
-  geom_rect(data=brnonly, aes(xmin = 12, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
-  geom_rect(data=chkonly, aes(xmin = 12, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
+  geom_rect(data=brnonly, aes(xmin = 12.5, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
+  geom_rect(data=chkonly, aes(xmin = 12.5, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
   facet_grid(rows=vars(facetorder)) +
   labs(x="Date (YY-MM)", y= "Log copies/L water", title = "Cutthroat Trout", color="Station") + 
   theme_bw() + 
@@ -116,8 +116,8 @@ ggplot(cut_modeled_conc_plot, aes(x = newtime, y = log(mean_concentration_est), 
                              creek == "5Sqm" ~ "Squalicum",
                              TRUE ~ creek)) %>% 
     unite(timecreek, c(time, creek), remove=FALSE) %>%
-  unite(creekyrmo, c(creek,year,month)) %>%
-  mutate(flow_m3s = ifelse(is.na(flow_m3s), 0.00141584235, flow_m3s)) # when no metered flow, use half the lowest verified flow
+  unite(creekyrmo, c(creek,year,month)) # %>%
+  # mutate(flow_m3s = ifelse(is.na(flow_m3s), 0.00141584235, flow_m3s)) # when no metered flow, use half the lowest verified flow
 
 
 cut_flow_corrected <- cut_modeled_conc %>%
@@ -143,30 +143,48 @@ cut_flow_corrected <- cut_modeled_conc %>%
   mutate(ci75_conc_flow_correct = ci25_concentration_est*flow_m3s*1000) %>% 
   mutate(LOQ = (100/(Adj_Vol/2))*1000*flow_m3s)  %>% # 
   mutate(belowLOQ = mean_conc_flow_correct < LOQ) %>% 
-  mutate(facetorder = factor(creek, levels=c('Padden','Portage','Chuckanut','Squalicum', 'Barnes')))
+  mutate(facetorder = factor(creek, levels=c('Padden','Portage','Chuckanut','Squalicum', 'Barnes'))) %>% 
+  add_row(newtime="22-09", station="Down", facetorder="Padden") %>% add_row(newtime="22-09", station="Down", facetorder="Portage") %>% 
+  add_row(newtime="22-09", station="Down", facetorder="Chuckanut") %>% add_row(newtime="22-09", station="Down", facetorder="Squalicum") %>% 
+  add_row(newtime="22-09", station="Down", facetorder="Barnes") %>% 
+  add_row(newtime="22-10", station="Down", facetorder="Padden") %>% add_row(newtime="22-10", station="Down", facetorder="Portage") %>% 
+  add_row(newtime="22-10", station="Down", facetorder="Chuckanut") %>% add_row(newtime="22-10", station="Down", facetorder="Squalicum") %>% 
+  add_row(newtime="22-10", station="Down", facetorder="Barnes") %>% 
+  add_row(newtime="22-11", station="Down", facetorder="Padden") %>% add_row(newtime="22-11", station="Down", facetorder="Portage") %>%
+  add_row(newtime="22-11", station="Down", facetorder="Chuckanut") %>% add_row(newtime="22-11", station="Down", facetorder="Squalicum") %>%
+  add_row(newtime="22-11", station="Down", facetorder="Barnes") 
 
 #write_rds(cut_flow_corrected, here("Output","qPCR", "modeled_cut_qpcr_flowcorrected_monthlyavg.RDS"))
 #write_rds(cut_flow_corrected, here("Output","qPCR", "modeled_cut_qpcr_flowcorrected_allpadden.RDS"))
 
 brnonly_flow <- cut_flow_corrected %>% 
-  filter(creek=="Barnes")
+  filter(creek=="Barnes") %>% 
+  distinct()
 chkonly_flow <- cut_flow_corrected %>% 
   filter(creek=="Chuckanut") %>% 
-  filter(station=="Down")
+  filter(station=="Down") %>% 
+  distinct()
+padonly_flow <- cut_flow_corrected %>% 
+  filter(creek=="Padden") %>% 
+  filter(station=="Down") %>% 
+  distinct()
 
 cut_flow_corrected  %>% 
   ggplot(aes(x = newtime, y = log(mean_conc_flow_correct), color=station)) +
   geom_point() +
-  stat_smooth(method = "loess", span=0.5, aes(group=station)) +
+  stat_smooth(method = "loess", aes(group=station), span=.3) +
   geom_segment(aes(x = newtime, xend = newtime, y = log(ci25_flow_correct), yend = log(ci75_conc_flow_correct))) +
   geom_point(aes(x=newtime, y=log(LOQ)), color="red", shape=3) +
-  geom_rect(data=brnonly_flow, aes(xmin = 12, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
-  geom_rect(data=chkonly_flow, aes(xmin = 12, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
   facet_grid(rows=vars(facetorder)) +
-  labs(x="Date (YY-MM)", y= "Log copies/s (flow corrected)", title = "Cutthroat Trout", color="Station") + 
+  geom_rect(data=brnonly_flow, aes(xmin = 11, xmax = 23, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
+  geom_rect(data=chkonly_flow, aes(xmin = 11, xmax = 23, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
+  geom_rect(data=padonly_flow, aes(xmin = 7, xmax = 8, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
+  geom_rect(data=padonly_flow, aes(xmin = 17, xmax = 19, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
+  geom_rect(data=padonly_flow, aes(xmin = 19, xmax = 21, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
+  labs(x="Date (YY-MM)", y= "eDNA Mass Flow Rate (log copies/s)", title = "Cutthroat Trout", color="Station") + 
   theme_bw() + 
   scale_x_discrete(guide = guide_axis(angle = -45)) +
-  scale_color_manual(values=c("darkgrey", "black", "black", "blue"))
+  scale_color_manual(values=c("darkgrey", "black", "black", "blue"), labels=c("Down","Up","Up11","Up5"))
 
 ggsave(here("Output","Figures", "modeled_cut_qpcr_updown_flowcorrected.png"), units="in", width=5, height=7)
 

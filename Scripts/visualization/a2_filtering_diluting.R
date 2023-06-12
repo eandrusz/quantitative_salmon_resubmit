@@ -87,3 +87,16 @@ cut_data_for_stan %>%
   scale_x_discrete(guide = guide_axis(angle = -45))
 
 ggsave(here("Output","SupplementalFigures","inhibition_dilution_factors.png"))
+
+cut_data_for_stan %>% 
+  filter(! str_detect(Sample, "St")) %>% 
+  summarize(meanvolfiltered=mean(Adj_Vol, na.rm=TRUE))
+
+cut_data_for_stan %>% 
+  filter(! str_detect(Sample, "St")) %>% 
+  summarize(mediandilutionfactor=median(dilution, na.rm=TRUE))
+
+cut_data_for_stan %>%
+  filter(! str_detect(Sample, "St")) %>% 
+  group_by(dilution) %>% 
+  summarize(n())

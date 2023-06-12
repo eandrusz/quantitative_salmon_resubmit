@@ -110,7 +110,7 @@ allstations <- unique(metabeforeqmplot$station)
 notsampledtimes <- c("22-09", "22-10", "22-11")
 notsampledtimes2 <- c("22-03", "22-04", "22-05", "22-06", "22-07", "22-08", "22-12")
 
-notsamp <- expand.grid(notsampledtimes2, allcreeks, allstations)  
+notsamp <- expand.grid(c(notsampledtimes,notsampledtimes2), allcreeks, allstations)  
 notsamp <- notsamp %>% 
   mutate(species="Not Sampled") %>% 
   rename(newtime=Var1, creek=Var2, station=Var3) %>% 
@@ -120,12 +120,14 @@ notsamp <- notsamp %>%
   mutate(facetorder = factor(creek, levels=c('Padden','Portage','Chuckanut','Squalicum', 'Barnes'))) %>% 
   add_row(creektimestation="Squalicum_21-09_Up", newtime = "21-09", creek="Squalicum", station="Up", species="Not Sampled", propReads=1, facetorder="Squalicum")
 
-metabeforeqmplot_nopad <- metabeforeqmplot %>% 
+metabeforeqmplot_nosample <- rbind(metabeforeqmplot, notsamp)
+  #rbind(metabeforeqmplot_nopad, (notsamp %>% filter(creek != "Padden") %>% filter(station != "Up11") %>% filter(station != "Up5")))
+
+metabeforeqmplot_nopad_nosample <- metabeforeqmplot_nosample %>% 
   filter(creek != "Padden") %>%
   filter(station != "Up5") %>%
+  filter(station != "Up11") %>%
   select(c(newtime,propReads,species, station, facetorder)) 
-
-metabeforeqmplot_nopad_nosample <- rbind(metabeforeqmplot_nopad, (notsamp %>% filter(creek != "Padden") %>% filter(station != "Up11") %>% filter(station != "Up5")))
 
 metabeforeqmplot_nopad_nosample %>% 
 ggplot(aes(x=newtime, y=propReads, fill=species, color=species)) +
@@ -141,8 +143,9 @@ ggplot(aes(x=newtime, y=propReads, fill=species, color=species)) +
 
 ggsave(here("Output","SupplementalFigures","proportions_before_qm_nopadden.png"), units="in", width=14, height=5)
 
-metabeforeqmplot %>% 
+metabeforeqmplot_nosample %>% 
   filter(creek == "Padden") %>% 
+  filter(station != "Up") %>% 
   ggplot(aes(x=newtime, y=propReads, fill=species, color=species)) +
   geom_col() +
   facet_grid(rows="station") +
@@ -203,12 +206,13 @@ postplot <- allpost %>%
   separate(time, into = c("month","year"), sep = 2, remove=FALSE) %>% 
   unite(newtime, c(year,month), sep="-", remove=FALSE)
 
-postplot_nopad <- postplot %>% 
+postplot_nosample <- rbind(postplot, (notsamp %>% rename(avgprop=propReads)))
+
+postplot_nopad_nosample <- postplot_nosample %>% 
   filter(creek != "Padden") %>%
+  filter(station != "Up5") %>% 
+  filter(station != "Up11") %>% 
   select(c(newtime, avgprop, species, station, facetorder)) 
-
-postplot_nopad_nosample <- rbind(postplot_nopad, (notsamp %>% rename(avgprop = propReads) %>% filter(creek != "Padden") %>% filter(station != "Up11") %>% filter(station != "Up5")))
-
 
 postplot_nopad_nosample %>% 
   ggplot(aes(x = newtime, fill = species, color = species, y = avgprop)) +
@@ -227,8 +231,12 @@ postplot_nopad_nosample %>%
 
 ggsave(here("Output","Figures","proportions_after_qm_nopadden.png"), units="in", width=14, height=5)
 
-paddenpostplot <- postplot %>% 
-  filter(creek == "Padden")  
+paddenpostplot <- postplot_nosample %>% 
+  filter(creek == "Padden") %>% 
+  filter(station != "Up11") %>% 
+  mutate(station = case_when(station == "Up" ~ "Up11",
+                   station == "Down" ~ "Down",
+                   station == "Up5" ~ "Up5"))
 
 paddenpostplot %>% 
   ggplot(aes(x = newtime, fill = species, color = species, y = avgprop)) +
@@ -240,11 +248,12 @@ paddenpostplot %>%
   ylab("Proportion of DNA after QM correction") +
   labs(x="Date (YY-MM)", fill="Species") +
   ggtitle("Padden Creek") +
+  lims(y=c(0,1)) + 
   scale_x_discrete(guide = guide_axis(angle = -45)) +
-  geom_vline( aes(xintercept=6.5), color="black", linetype=2) + 
-  geom_vline( aes(xintercept=7.5), color="black", linetype=2) + 
+  geom_vline(aes(xintercept=6.5), color="black", linetype=2) + 
+  geom_vline(aes(xintercept=7.5), color="black", linetype=2) + 
   geom_vline(aes(xintercept=16.5), color="black", linetype=2) + 
-  geom_vline( aes(xintercept=18.5), color="black", linetype=2) + 
+  geom_vline(aes(xintercept=18.5), color="black", linetype=2) + 
   theme_bw()
 
 ggsave(here("Output","Figures","proportions_after_qm_padden.png"), units="in", width=8, height=5)

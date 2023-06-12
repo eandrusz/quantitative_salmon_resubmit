@@ -130,22 +130,28 @@ e_chk <- expand.grid(alltimes, unique(e$species), unique(e$station)) %>%
   mutate(creek="Chuckanut") %>% 
   rename(newtime=Var1, species=Var2, station=Var3)
 
-## only squalicum for times not sampled 
+## only barnes for times not sampled 
 e_brn <- expand.grid(alltimes, unique(e$species), unique(e$station)) %>% 
   mutate(creek="Barnes") %>% 
+  rename(newtime=Var1, species=Var2, station=Var3)
+
+## only squalicum for times not sampled 
+e_sqm <- expand.grid(alltimes, unique(e$species), unique(e$station)) %>% 
+  mutate(creek="Squalicum") %>% 
   rename(newtime=Var1, species=Var2, station=Var3)
 
 
 multispeciesTrendsplot_simple <- ggplot() +  #treating meandnaconc as observations
   geom_rect(data=e_pad, aes(xmin = 6, xmax = 8, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
   geom_rect(data=e_pad, aes(xmin = 16, xmax = 17, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
-  geom_rect(data=e_chk, aes(xmin = 12, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
-  geom_rect(data=e_brn, aes(xmin = 12, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
-  geom_point(data=e, aes(x = newtime, y = mean, color = station), size = 1.5, alpha = .7) + #mean estimates of mu
+  geom_rect(data=e_chk, aes(xmin = 12.5, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
+  geom_rect(data=e_brn, aes(xmin = 12.5, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
+  geom_rect(data=e_sqm, aes(xmin = 6.5, xmax = 7.5, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "grey") +
+  geom_point(data= e, aes(x = newtime, y = mean, color = station), size = 1.5, alpha = .7) + #mean estimates of mu
   #geom_smooth(data=e, aes(x = newtime, y = mean, color = station), se = F, size = 1, alpha = .5, span = .2) +
-  geom_segment(data=e, aes(x = newtime, xend = newtime, y = q5, yend = q95, color = station), size = .7, alpha = .4) +
+  geom_segment(data= e, aes(x = newtime, xend = newtime, y = q5, yend = q95, color = station), size = .7, alpha = .4) +
   facet_grid(species~creek) +
-  xlab("Date (YY-MM)") + ylab("Log DNA Concentration (copies/s)") +
+  xlab("Date (YY-MM)") + ylab("eDNA Mass Flow Rate (log copies/s)") +
   labs(color='Station') +
   scale_color_manual(values = c("grey", "black", "blue"), labels = c('Downstream', 'Upstream (SR-11)', 'Upstream (I-5)')) + 
   # ggtitle(paste0(unique(f$species)[i], "\n(predicted mean +/- 95 CI)")) +
@@ -229,13 +235,14 @@ du_zeros <- expand.grid(alltimes, allspecies, allcreeks)
 du_zeros <- du_zeros %>% 
   mutate(value=-5) %>% 
   rename(newtime=Var1, species=Var2, creek=Var3) %>% 
-  unite(creektimespecies, c("creek","newtime","species"), remove=FALSE) %>% 
-  filter(! creektimespecies %in% dud$creektimespecies) %>% 
   mutate(species = case_when(species == "Oncorhynchus clarkii" ~ "clarkii",
                              species == "Oncorhynchus mykiss" ~ "mykiss",
                              species == "Oncorhynchus kisutch" ~ "kisutch",
                              species == "Oncorhynchus nerka" ~ "nerka",
-                             TRUE ~ species))
+                             TRUE ~ species)) %>% 
+  unite(creektimespecies, c("creek","newtime","species"), remove=FALSE) %>% 
+  filter(! creektimespecies %in% dud$creektimespecies) 
+  
 
 du511_zeros <- du_zeros %>% 
   filter(! creektimespecies %in% du511$creektimespecies) %>% 
@@ -258,13 +265,13 @@ dud %>%
   geom_boxplot(fill = "grey") +
   #facet_grid(~creek~species) +
   geom_hline(yintercept=0, color="black", linetype=2) +
-  geom_point(data=du_zeros %>% filter(creek %in% c("Chuckanut", "Squalicum","Portage")), aes(x=newtime, y=value), pch=8) + 
+  #geom_point(data=du_zeros %>% filter(creek %in% c("Chuckanut", "Squalicum","Portage")), aes(x=newtime, y=value), pch=8) + 
   geom_point(data=notsampled %>% filter(creek %in% c("Chuckanut", "Squalicum","Portage")), aes(x=newtime, y=value), pch=8, color="grey") + 
   geom_vline(xintercept=12, linetype=3) + 
-  annotate("label", x = 6, y = 6, label = "n = 3 creeks") +
-  annotate("label", x = 17, y = 6, label = "n = 2 creeks") +
+  annotate("label", x = 6, y = 6, label = "n = 5 creeks") +
+  annotate("label", x = 17, y = 6, label = "n = 3 creeks") +
   #geom_point(data=notsampled2, aes(x=newtime, y=value), color="grey") + 
-  xlab("Date (YY-MM)") + ylab("Log-Fold Change \n Upstream to Downstream") +
+  xlab("Date (YY-MM)") + ylab("Log-Fold Change \n in Mass Flow Rate (copies/s) \n Upstream to Downstream") +
   theme_bw() + 
   scale_x_discrete(guide = guide_axis(angle = -45))
 ggsave(filename=here("Output","Figures","culvert_boxplot_passable.png"), units="in", width=7, height=5)
@@ -302,6 +309,7 @@ dud %>%
   geom_rect(data=pad_only, aes(xmin = 17, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
   facet_grid(~species~creek) + 
   theme_bw() +
+  labs(size= "Discharge (m3/s)") +
   scale_x_discrete(labels = xlabels, guide = guide_axis(angle = -45)) 
 ggsave(filename=here("Output","SupplementalFigures","culvert_means_flow_separated.png"), units="in", width=12, height=5)
 
@@ -316,10 +324,42 @@ dud %>%
   geom_rect(data=pad_only, aes(xmin = 6, xmax = 8, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
   geom_rect(data=pad_only, aes(xmin = 17, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
   #facet_grid(~species~creek) + 
-  labs(x="Date (YY-MM)", y="Log-Fold Change \n Upstream to Downstream", size="Flow Rate (m3/s)", color="Creek") + 
+  labs(x="Date (YY-MM)", y="Log-Fold Change \n Upstream to Downstream", size="Discharge (m3/s)", color="Creek") + 
   theme_bw() +
   scale_x_discrete(labels = xlabels, guide = guide_axis(angle = -45)) 
 ggsave(filename=here("Output","Figures","culvert_means_flow.png"), units="in", width=7, height=5)
 
   
-### CONTROL CREEKS VERSUS PADDEN 
+### STATS 
+dud_stats <- dud %>% 
+  ungroup() %>% 
+  select(c(creektimespecies, meandiff)) %>% 
+  distinct()
+
+allmean <- mean(dud_stats$meandiff)
+
+dud_0.1 <- dud_stats %>% 
+  filter(meandiff < 0.1) %>% 
+  filter(meandiff > -0.1)
+
+## PADDEN BEFORE AFTER CONSTRUCTION
+# kind of busy so remove the times when not sampled and collapse by species / creek
+padconst <- dud %>% 
+  filter(creek=="Padden")
+  
+ggplot() +
+  geom_rect(data=pad_only %>% distinct(), aes(xmin = 6, xmax = 8, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
+  geom_rect(data=pad_only %>% distinct(), aes(xmin = 17, xmax = 20, ymin = -Inf, ymax = Inf), alpha = .01, color=NA, fill = "wheat") +
+  geom_point(data= (dud %>% filter(creek=="Padden")), aes(x=newtime, y=meandiff), color="black") + 
+  geom_point(data= (dud %>% filter(creek!="Padden")), aes(x=newtime, y=meandiff), color="grey", alpha = .01) +
+  geom_hline(yintercept=0, linetype=2) +
+  #geom_point(data=dud_zeros, aes(x=newtime, y=value)) + 
+  #geom_point(data=notsampled, aes(x=newtime, y=value), color="grey") + 
+  #geom_point(data=notsampled2, aes(x=newtime, y=value), color="grey") + 
+  facet_wrap(~species) + 
+  labs(x="Date (YY-MM)", y="Mean Log-Fold Change \n Upstream to Downstream", title="Padden Creek") + 
+  theme_bw() +
+  scale_x_discrete(guide = guide_axis(angle = -45)) 
+
+ggsave(filename=here("Output","Figures","culvert_padden_controls.png"), units="in", width=7, height=5)
+

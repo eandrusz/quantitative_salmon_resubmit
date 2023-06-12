@@ -174,7 +174,11 @@ salmonidspersample <- salmonidsused %>%
   select(c(Sample_name,species, nReads)) %>% 
   group_by(Sample_name,species) %>% 
   summarize(salmonreads = sum(nReads)) %>% 
-  distinct()
+  distinct() 
+
+salmonidreaddepth <- salmonidspersample %>% 
+  group_by(Sample_name) %>% 
+  summarize(totalsalmonreads = sum(salmonreads))
   
 salmonstats <- salmonidspersample %>% 
   group_by(species) %>% 
@@ -359,3 +363,4 @@ pad <- cowplot::plot_grid(fishpad, mampad, amppad, birdpad, nrow=2, ncol=2)
 ggsave(here("Output", "SupplementalFigures","ALLTAXA_padden.png"), units="in", width=20, height=8)
 con <- cowplot::plot_grid(fishcon, mamcon, ampcon, birdcon, nrow=2, ncol=2)
 ggsave(here("Output", "SupplementalFigures","ALLTAXA_controls.png"), units="in", width=20, height=12)
+
