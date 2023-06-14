@@ -79,7 +79,6 @@
 \usepackage{setspace}\doublespacing
 \usepackage{gensymb}
 \geometry{verbose,letterpaper,tmargin=2.54cm,bmargin=2.54cm,lmargin=2.54cm,rmargin=2.54cm}
-\usepackage[nomarkers, nolists, figuresonly]{endfloat}
 \usepackage{float}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
@@ -123,10 +122,10 @@ U.S.A.
 \href{mailto:eallan@uw.edu}{\nolinkurl{eallan@uw.edu}} \vspace{1em}
 
 For submission to: \textit{Ecological Applications} \newline Manuscript
-type: Article \newline Open Research Statement: Data are provided as
-private-for-peer review (shared privately or publicly on a repository).
-The repository for code can be found at:
-\url{https://github.com/eandrusz/quantitative_salmon_resubmit.git}
+type: Article \newline Open Research Statement: Data are already
+published and publicly available, with those publications properly cited
+in this submission. The repository for code can be found at:
+\newline  \url{https://github.com/eandrusz/quantitative_salmon_resubmit.git}
 \newline \textit{Keywords: environmental DNA, quantitative metabarcoding, environmental impact assessments, salmon, culvert}
 
 \newpage
@@ -343,43 +342,31 @@ We selected sampling locations based loosely on an asymmetrical BACI
 (Before-After-Control-Impact) study design (Underwood 1992, 1994,
 Benedetti-Cecchi 2001) to measure the environmental impact of a culvert
 replacement using eDNA. We sampled four control creeks where
-construction was not occuring, (Figure \ref{fig:map}) at monthly
-intervals, both upstream and downstream of each creek's culvert. The two
-culverts in the treatment creek (Padden) were suspected to be partially
-impassible and thus were removed and replaced during the course of the
-study. The four control creeks ranged from preventing fish passage
-(Barnes and Chuckanut), partially passable (Squalicum), to allowing fish
-passage (Portage; see Supplemental Text 1) (Washington Department of
-Fish and Wildlife 2019). These creeks were chosen due to their
-comparable size, flow, watersheds, and species presumed to be present to
-constrain as many ecological variables as possible.
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/SiteMap.png}
-\caption{Map of sampling locations near Bellingham, Washington. In the
-red subset, triangles designate the downstream sampling location and
-circles designate the upstream sampling location. Padden Creek (the
-treatment creek where the two culverts were replaced) is shown in the
-blue subset where downstream is a triangle, upstream of the first
-culvert (SR-11) is a circle, and upstream of the second culvert (I-5) is
-a square.\label{fig:map}}
-\end{figure}
+construction was not occuring, (Figure 1) at monthly intervals, both
+upstream and downstream of each creek's culvert. The two culverts in the
+treatment creek (Padden) were suspected to be partially impassible and
+thus were removed and replaced during the course of the study. The four
+control creeks ranged from preventing fish passage (Barnes and
+Chuckanut), partially passable (Squalicum), to allowing fish passage
+(Portage; see Appendix S1) (Washington Department of Fish and Wildlife
+2019). These creeks were chosen due to their comparable size, flow,
+watersheds, and species presumed to be present to constrain as many
+ecological variables as possible.
 
 The first culvert replacement (SR-11) in Padden Creek occurred over
 about two months and included the ``de-watering'' of the creek, removal
 of the existing culvert, installation of the new culvert, and then the
 ``re-watering'' of the creek from late August 2021 to early October 2021
-(Supplemental Text 1; Figure S1.4). The second culvert replacement (I-5)
-in Padden Creek was a much larger construction project, including
-daylighting the creek and building a bridge under a large, five-lane
-interstate. In-water work for the I-5 culvert replacement began in late
-June 2022 and was completed in September 2022. By sampling before,
-during, and after both construction events, we were then able to isolate
-the effect of the culvert replacement itself -- controlling for temporal
-trends, background environmental variability, and sampling variability
--- using a linear mixed effects model of eDNA abundances across creeks,
-time points, sampling stations, and species.
+(Appendix S1: Figure S4). The second culvert replacement (I-5) in Padden
+Creek was a much larger construction project, including daylighting the
+creek and building a bridge under a large, five-lane interstate.
+In-water work for the I-5 culvert replacement began in late June 2022
+and was completed in September 2022. By sampling before, during, and
+after both construction events, we were then able to isolate the effect
+of the culvert replacement itself -- controlling for temporal trends,
+background environmental variability, and sampling variability -- using
+a linear mixed effects model of eDNA abundances across creeks, time
+points, sampling stations, and species.
 
 Because salmonids are the primary species of management concern in these
 creeks, we focus the present analysis on the four salmonid species most
@@ -400,9 +387,9 @@ concentrations) occur in the creeks. Furthermore, three of the four
 species in this study have both freshwater resident and saltwater
 migrating behavior. For the fish exhibiting migratory behavior, the run
 timings vary for each species in the study area (see Discussion and
-Figure S1.4). Therefore, our eDNA concentrations might reflect
-contributions from both migrating and non-migrating individuals at any
-given time point in the dataset.
+Appendix S1: Figure S4). Therefore, our eDNA concentrations might
+reflect contributions from both migrating and non-migrating individuals
+at any given time point in the dataset.
 
 \hypertarget{water-sampling}{%
 \subsubsection{Water Sampling}\label{water-sampling}}
@@ -421,82 +408,66 @@ Root, Vancouver, WA), which were then dried and kept at room temperature
 until DNA extraction within 1 month of collection (Thomas et al. 2019).
 
 Over the course of the sampling, water discharge varied from very low to
-no flow in summer months to high flow in winter months (Figure
-\ref{fig:flows}). We account for this dilution by converting eDNA
-concentration {[}copies/\(\mu\)L{]} to an eDNA mass flow rate
-{[}copies/s{]} by multiplying eDNA concentrations by discharge {[}L/s{]}
-(Tillotson et al. 2018, Thalinger et al. 2019). Flow gauges maintained
-by the United States Geological Survey (USGS) were used for Padden Creek
-(USGS Gauge 12201905), Chuckanut Creek (USGS Gauge 12201700), and
-Squalicum Creek (USGS Gauge 12204010;
+no flow in summer months to high flow in winter months (Figure 2). We
+account for this dilution by converting eDNA concentration
+{[}copies/\(\mu\)L{]} to an eDNA mass flow rate {[}copies/s{]} by
+multiplying eDNA concentrations by discharge {[}L/s{]} (Tillotson et al.
+2018, Thalinger et al. 2019). Flow gauges maintained by the United
+States Geological Survey (USGS) were used for Padden Creek (USGS Gauge
+12201905), Chuckanut Creek (USGS Gauge 12201700), and Squalicum Creek
+(USGS Gauge 12204010;
 \url{https://maps.waterdata.usgs.gov/mapper/index.html}; U. S.
-Geological Survey (1994); Figure S1.1). Over the course of sampling, the
-flow gauges at Chuckanut Creek and Squalicum Creek became inoperable
-after a major flooding event. To find discharge rates for Chuckanut and
-Squalicum Creeks, five years of historical data (2015-2020) were used to
-generate a monthly averaged correction factor based on Padden Creek
-(Supplemental Text 1, Figure S1.3). No discharge data was available for
-Portage Creek or Barnes Creek. Based on field sampling conditions, the
-discharge from Padden Creek was used as a proxy for both Portage and
-Barnes as they are in similarly sized watershed areas and land-cover
-characteristics.
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/flow_gauges.png}
-\caption{Discharge (m\textsuperscript{3}/s) in Padden (USGS Gauge
-12201905), Chuckanut (USGS Gauge 12201700), and Squalicum (USGS Gauge
-12204010) Creeks over the course of sampling. Gauges at Chuckanut and
-Squalicum Creek went offline in November 2021 after a major storm event.
-Portage Creek and Barnes Creek did not have stream gauges. Circles
-designate the day of sampling. For Padden Creek, the nearest 15 minute
-interval of flow was used. For Chuckanut and Squalicum Creeks, the
-correction factor from five years of historical data from Padden Creek
-was used (see methods section and Supplemental Figures 2 and
-3).\label{fig:flows}}
-\end{figure}
+Geological Survey (1994); Appendix S1: Figure S1). Over the course of
+sampling, the flow gauges at Chuckanut Creek and Squalicum Creek became
+inoperable after a major flooding event. To find discharge rates for
+Chuckanut and Squalicum Creeks, five years of historical data
+(2015-2020) were used to generate a monthly averaged correction factor
+based on Padden Creek (Appendix S1, Appendix S1: Figure S3). No
+discharge data was available for Portage Creek or Barnes Creek. Based on
+field sampling conditions, the discharge from Padden Creek was used as a
+proxy for both Portage and Barnes as they are in similarly sized
+watershed areas and land-cover characteristics.
 
 \hypertarget{dna-extraction-amplification-sequencing}{%
 \subsubsection{DNA Extraction, Amplification,
 Sequencing}\label{dna-extraction-amplification-sequencing}}
 
 All molecular work prior to sequencing was performed at the University
-of Washington. Details of the molecular work can be found in
-Supplemental Text 1. Briefly, DNA was extracted off filters using a
-Qiashredder column (Qiagen, USA) and the DNeasy Blood and Tissue Kit
-(Qiagen, USA) with an overnight incubation (Supplemental Text 1, Thomas
-et al. (2019)). Extracts were stored at -20\degree C until PCR
-amplification within 2 months of extraction.
+of Washington. Details of the molecular work can be found in Appendix
+S1. Briefly, DNA was extracted off filters using a Qiashredder column
+(Qiagen, USA) and the DNeasy Blood and Tissue Kit (Qiagen, USA) with an
+overnight incubation (Appendix S1, Thomas et al. (2019)). Extracts were
+stored at -20\degree C until PCR amplification within 2 months of
+extraction.
 
 For metabarcoding, we targeted a \textasciitilde186 bp hypervariable
 region of the mitochondrial DNA 12S rRNA gene for PCR amplification
 (MiFish; Miya et al.~2015), but using modified primer sequences as given
 in Praebel and Wangensteen (unpublished; via personal communication).
 The primer sequences, final reaction recipe, and cycling conditions can
-be found in Supplemental Text 1. Each month of samples was amplified on
-a single plate with the addition of a no template control (NTC;
-molecular grade water in lieu of template) and a positive control
-(genomic DNA from kangaroo, a species not present in the environment).
-PCR products were visualized, size-selected, and diluted iteratively if
-inhibited. After cleaning, a second PCR amplification added unique
-indices to each sample using Nextera indices (Illumina, USA) to allow
-pooling multiple samples onto the same sequencing run (See Supplemental
-Text 1 for details). Indexed PCR products were also size-selected and
-visualized before pooling for sequencing. Samples were randomized in
-3-month blocks and each block split across 3 sequencing runs to avoid
-run effects, for a total of 14 sequencing runs. The loading
-concentration of each library was 4-8 pM and 5-20\% PhiX was included
-depending on the composition of the run. Sequencing was conducted using
-an Illumina Miseq with v3 2x300 chemistry at the NOAA Northwest
-Fisheries Science Center and the University of Washington's Northwest
-Genomics Center.
+be found in Appendix S1. Each month of samples was amplified on a single
+plate with the addition of a no template control (NTC; molecular grade
+water in lieu of template) and a positive control (genomic DNA from
+kangaroo, a species not present in the environment). PCR products were
+visualized, size-selected, and diluted iteratively if inhibited. After
+cleaning, a second PCR amplification added unique indices to each sample
+using Nextera indices (Illumina, USA) to allow pooling multiple samples
+onto the same sequencing run (See Appendix S1 for details). Indexed PCR
+products were also size-selected and visualized before pooling for
+sequencing. Samples were randomized in 3-month blocks and each block
+split across 3 sequencing runs to avoid run effects, for a total of 14
+sequencing runs. The loading concentration of each library was 4-8 pM
+and 5-20\% PhiX was included depending on the composition of the run.
+Sequencing was conducted using an Illumina Miseq with v3 2x300 chemistry
+at the NOAA Northwest Fisheries Science Center and the University of
+Washington's Northwest Genomics Center.
 
 Here, we used mock communities to determine the species-specific
 amplification efficiencies for each salmonid in the study. We
 constructed five communities with known proportions of starting DNA from
 different species (total DNA as measured by Qubit). The communities
 ranged from having a total of 12 to 20 species, but six salmonid species
-were included in all five mock communities (Supplemental Table 2). We
+were included in all five mock communities (Appendix S3: Table S2). We
 sequenced these communities using the same metabarcoding primers and
 thermocycling conditions above and then determined the species-specific
 amplification rates given the discrepancy between the known starting
@@ -506,7 +477,7 @@ environmental samples to estimate the starting DNA proportions of each
 species in environmental samples, which is the metric of interest
 (Figure 3, green boxes). This is the first application of the model to
 correct eDNA data from water samples with mock community data as
-described in Shelton et al. (2022) (see Supplemental Text 2 for more
+described in Shelton et al. (2022) (see Appendix S2 for more
 information).
 
 \hypertarget{bioinformatics}{%
@@ -514,15 +485,15 @@ information).
 
 After sequencing, bioinformatic analyses were conducted in R (R Core
 Team 2017). A more detailed description of the bioinformatics pipeline
-is included in Supplemental Text 1. Briefly, primer sequences were
-removed using \emph{Cutadapt} (Version 1.18) (Martin 2011) before
-\emph{dada2} (Callahan et al. 2016) trimmed, filtered, merged paired end
-reads, and generated amplicon sequence variants (ASVs). Taxonomic
-assignment was conducted via the \emph{insect} package (Wilkinson et al.
-2018) using a tree generated by the developers for the MiFish primers
-that was last updated in November 2018. Only species level assignments
-from \emph{insect} were retained and ASVs not annotated or not annotated
-to species level were then checked against the NCBI nucleotide database
+is included in Appendix S1. Briefly, primer sequences were removed using
+\emph{Cutadapt} (Version 1.18) (Martin 2011) before \emph{dada2}
+(Callahan et al. 2016) trimmed, filtered, merged paired end reads, and
+generated amplicon sequence variants (ASVs). Taxonomic assignment was
+conducted via the \emph{insect} package (Wilkinson et al. 2018) using a
+tree generated by the developers for the MiFish primers that was last
+updated in November 2018. Only species level assignments from
+\emph{insect} were retained and ASVs not annotated or not annotated to
+species level were then checked against the NCBI nucleotide database
 using BLAST+ (Camacho et al. 2009). Query sequences that matched a
 single species at \textgreater95\% identity were retained.
 
@@ -533,49 +504,48 @@ Testing}\label{quantitative-pcr-and-inhibition-testing}}
 We quantified cutthroat trout (\emph{O. clarkii}) DNA in each sample,
 targeting a 114 bp fragment of the cytochrome b gene with a qPCR assay
 (Duda et al. 2021). The primer/probe sequences, final recipe, and
-thermocycling conditions can be found in Supplemental Text 1. Each DNA
-sample was run in triplicate and was checked for inhibition using the
-EXO-IPC assay (Applied Biosystems). The majority of environmental
-samples (60\%) were inhibited and accordingly diluted for analysis. In
-80\% of inhibited samples, a 1:10 dilution or less remedied the
-inhibition, but some samples (11\%) required dilution by a factor of up
-to 1000. Each plate included a 8-point standard curve created using
-synthetic DNA (gBlocks) ranging from 1 to 100,000 copies/\(\mu\)L and
-six no template controls (NTCs) were included on each plate with
-molecular grade water instead of template. All qPCRs were conducted on
-an Applied Biosystems StepOnePlus thermocycler.
+thermocycling conditions can be found in Appendix S1. Each DNA sample
+was run in triplicate and was checked for inhibition using the EXO-IPC
+assay (Applied Biosystems). The majority of environmental samples (60\%)
+were inhibited and accordingly diluted for analysis. In 80\% of
+inhibited samples, a 1:10 dilution or less remedied the inhibition, but
+some samples (11\%) required dilution by a factor of up to 1000. Each
+plate included a 8-point standard curve created using synthetic DNA
+(gBlocks) ranging from 1 to 100,000 copies/\(\mu\)L and six no template
+controls (NTCs) were included on each plate with molecular grade water
+instead of template. All qPCRs were conducted on an Applied Biosystems
+StepOnePlus thermocycler.
 
 All qPCR data was processed in R using Stan (Stan Development Team
 2022), relating environmental samples to the standard curve via a linear
-model (Figure \ref{fig:conceptualfig}, blue boxes; Figure S2.1). We
-amended the standard linear regression model to more realistically
-capture the behavior of qPCR observations, accommodating non-detections
-as a function of underlying DNA concentration, and letting the standard
+model (Figure 3, blue boxes; Appendix S2: Figure S13). We amended the
+standard linear regression model to more realistically capture the
+behavior of qPCR observations, accommodating non-detections as a
+function of underlying DNA concentration, and letting the standard
 deviation vary with the mean (lower-concentration samples had more
 uncertainty). See McCall et al. (2014) and Shelton et al. (2019) for
-similar models; see Supplemental Text 2 for full statistical details.
-Subsequent analysis corrected for sample-specific dilution if found
-inhibited and corrected for any variation in water-volume filtered
-during sample collection. Samples with standard deviations between
-technical replicates larger than 1.5 Ct values were removed from
-analyses.
+similar models; see Appendix S2 for full statistical details. Subsequent
+analysis corrected for sample-specific dilution if found inhibited and
+corrected for any variation in water-volume filtered during sample
+collection. Samples with standard deviations between technical
+replicates larger than 1.5 Ct values were removed from analyses.
 
 \hypertarget{quantitative-metabarcoding}{%
 \subsubsection{Quantitative
 Metabarcoding}\label{quantitative-metabarcoding}}
 
 The intercalibration of the mock community samples demonstrated the rank
-order of amplification efficiencies for salmonids (Supplemental Figures
-10 and 11). Cutthroat trout (\emph{O. clarkii}) and sockeye/kokanee
-salmon (\emph{O. nerka}) had similar amplification efficiencies, both of
-which were higher than rainbow/steelhead trout (\emph{O. mykiss}) and
-coho salmon (\emph{O. kisutch}), which had the lowest amplification
-efficiency. Calibrated metabarcoding analysis yielded quantitative
-estimates of the proportions of species' DNA in environmental samples
-prior to PCR. We then converted these proportions into absolute
-abundances by expansion, using the qPCR results for our reference
-species, cutthroat trout (\emph{O. clarkii}). We estimated the total
-amplifiable salmonid DNA in environmental sample \(i\) as
+order of amplification efficiencies for salmonids (Appendix S1: Figure
+S10 and Appendix S1: Figure S11). Cutthroat trout (\emph{O. clarkii})
+and sockeye/kokanee salmon (\emph{O. nerka}) had similar amplification
+efficiencies, both of which were higher than rainbow/steelhead trout
+(\emph{O. mykiss}) and coho salmon (\emph{O. kisutch}), which had the
+lowest amplification efficiency. Calibrated metabarcoding analysis
+yielded quantitative estimates of the proportions of species' DNA in
+environmental samples prior to PCR. We then converted these proportions
+into absolute abundances by expansion, using the qPCR results for our
+reference species, cutthroat trout (\emph{O. clarkii}). We estimated the
+total amplifiable salmonid DNA in environmental sample \(i\) as
 \(\text{C}_{\text{amplifiable}_{i}} = \frac{\text{C}_{\text{qPCR reference}_{i}}}{\text{Proportion}_{\text{reference}_{i}}}\),
 where C has units of {[}DNA copies/uL{]} and then expanded species'
 proportions into absolute concentrations by multiplying these
@@ -583,32 +553,16 @@ sample-specific total concentrations by individual species' proportions,
 such that for species \(j\) in sample \(i\),
 \(\text{C}_{i,j} = \text{C}_{\text{amplifiable}_{i}} * \text{Proportion}_{i,j}\).
 Here, we combine the modeled output of the qPCR model for cutthroat
-trout (Figure \ref{fig:conceptualfig} dashed blue box) and modeled
-proportions of salmonid DNA from metabarcoding (Figure
-\ref{fig:conceptualfig} dashed green box). Although in the future this
-could be used as a joint model, here the precision of our modeled
-estimates were very high such that we used the mean of the posterior
-estimates from each model to move forward as input to the time series
-model (Figure \ref{fig:conceptualfig} dashed purple box; see
-Supplemental Text 2 for more details). Finally, due to the range of
-water discharge over the course of the year, we converted from DNA
-concentration {[}copies/L{]} to a mass flow rate {[}copies/s{]} after
-multiplying by the discharge of each creek {[}m\textsuperscript{3}/s{]}
-(Figure \ref{fig:conceptualfig}, solid purple boxes).
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/NGN_Fig3.png}
-\caption{Conceptual figure of different datasets and models used for
-analyses. * indicates that here, biological replicates are different
-dilutions of the synthetic gBlock. ** indicates that for most samples,
-only one technical replicate was sequenced but for one sample per
-sampling month, three technical replicates were sequenced to check for
-consistency across replicates. *** indicates that here, the three
-biological replicates indicate three different mock communities with
-varying species compositions, but all containing the four salmonids of
-interest. Created with BioRender.com.\label{fig:conceptualfig}}
-\end{figure}
+trout (Figure 3, dashed blue box) and modeled proportions of salmonid
+DNA from metabarcoding (Figure 3, dashed green box). Although in the
+future this could be used as a joint model, here the precision of our
+modeled estimates were very high such that we used the mean of the
+posterior estimates from each model to move forward as input to the time
+series model (Figure 3, dashed purple box; see Appendix S2 for more
+details). Finally, due to the range of water discharge over the course
+of the year, we converted from DNA concentration {[}copies/L{]} to a
+mass flow rate {[}copies/s{]} after multiplying by the discharge of each
+creek {[}m\textsuperscript{3}/s{]} (Figure 3, solid purple boxes).
 
 \hypertarget{estimating-the-effects-of-culvert-replacement-and-of-culverts-themselves}{%
 \subsubsection{Estimating the Effects of Culvert Replacement and of
@@ -653,7 +607,7 @@ differently:
   draw from a common distribution.~
 \end{itemize}
 
-Ultimately, the three models yielded very similar results (Figure S2.2),
+Ultimately, the three models yielded very similar results (Appendix S2),
 and the LME model proved simplest and most flexible insofar as it could
 easily handle datasets with uneven sets of observations -- for example,
 cases in which a species was detected downstream of a barrier, but not
@@ -662,11 +616,8 @@ upstream.
 In \texttt{R} code using \texttt{rstanarm}, this model is coded as
 
 \begin{verbatim}
-stan_glmer(log(observed) ~ (1 + time_idx|creek:species) + (1|station:creek:species:time_idx)
+stan_glmer(log(observed) ~ (1 + time_idx|creek:species) + (1|station:creek:species:time_idx)  
 \end{verbatim}
-
-See Supplemental Text 2 for more details on the linear mixed-effects
-model. ~
 
 \hypertarget{results}{%
 \subsection{Results}\label{results}}
@@ -703,37 +654,15 @@ the samples across all times, creeks, and stations had at least 50\% of
 reads assigned to cutthroat trout.
 
 After calibrating metabarcoding data using mock communities (See
-Supplemental Texts 1 and 2), we estimated the salmonid composition
-across time points, creeks, and stations (Figures \ref{fig:qm_controls}
-and \ref{fig:qm_padden}). The culvert in one control creek (Barnes)
-appeared to be nearly a total barrier to salmonid passage, with salmonid
-eDNA detected upstream of the culvert at only three time points, in
-contrast to being detected at every time point in the downstream station
-of the same creek. The other four creeks had no such pattern associated
-with the culverts, suggesting that fish passage may have been possible
-through the culverts, or that there were resident populations upstream
-of the culverts.
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/proportions_after_qm_nopadden.png}
-\caption{Compositions of salmonid DNA in control creeks as determined by
-metabarcoding after correction for amplification bias. Grey shading
-denotes time points that were not sampled (Barnes and Chuckanut Creeks
-after March 2023 and Squalicum Creek in September 2021 which was dry).
-The empty bars in the Barnes upstream sites indicate that no salmonid
-DNA was found at those time points.\label{fig:qm_controls}}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/proportions_after_qm_padden.png}
-\caption{Compositions of salmonid DNA in Padden Creek as determined by
-metabarcoding after correction for amplification bias. The empty bar in
-the March 2023 in Up5 indicates that no salmonid DNA was found. The
-vertical dashed lines indicates the time period in which the culverts
-were replaced (SR-11 and I-5, respectively).\label{fig:qm_padden}}
-\end{figure}
+Appendix S1 and Appendix S2), we estimated the salmonid composition
+across time points, creeks, and stations (Figures 4 and 5). The culvert
+in one control creek (Barnes) appeared to be nearly a total barrier to
+salmonid passage, with salmonid eDNA detected upstream of the culvert at
+only three time points, in contrast to being detected at every time
+point in the downstream station of the same creek. The other four creeks
+had no such pattern associated with the culverts, suggesting that fish
+passage may have been possible through the culverts, or that there were
+resident populations upstream of the culverts.
 
 All environmental samples were quantified for absolute concentrations of
 cutthroat trout DNA across 32 qPCR plates, resulting in
@@ -741,106 +670,53 @@ cutthroat trout DNA across 32 qPCR plates, resulting in
 detection in at least 1 of 3 technical replicates. The modeled output of
 cutthroat trout DNA concentrations, ranged from 50 copies/L to 1.4 x
 10\textsuperscript{6} copies/L, with a mean value of
-\textasciitilde47,000 copies/L (Figure \ref{fig:qpcr}).
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png}
-\caption{Absolute mass flow rate (log copies/s) of cutthroat trout
-(\emph{O. clarkii}) as measured by qPCR after flow correction. Note that
-Barnes Creek and Chuckanut Creek were not sampled after February 2022.
-Red crosses show the limit of detection for each species and time point,
-which changes with flow rate and total volume filtered per
-sample.\label{fig:qpcr}}
-\end{figure}
+\textasciitilde47,000 copies/L (Figure 6).
 
 We combined compositional information from metabarcoding with absolute
 concentrations from qPCR for our reference species, cutthroat trout
 (\emph{O. clarkii}), to estimate the total concentration of DNA for each
-species (See Supplemental Text 2). These quantitative data for all four
-target species were then used in the linear mixed-effects model to
-assess salmonid trends over time (Figure \ref{fig:ts}).
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/multispeciesTrends_flowcorrected.png}
-\caption{Trends in mass flow rate (log copies/s) for each of four
-salmonid species across creeks and across time as estimated by eDNA
-analysis. Points represent posterior means for the linear mixed effects
-model and error bars represent the 95\% posterior confidence interval.
-Colors indicate station upstream (black) or downstream (grey) of the
-culvert. Padden has an additional sampling site upstream of the second
-culvert (I-5; blue). Yellow shading indicates the time period in which
-the culverts in the treatment creek (Padden Creek) were replaced. Grey
-shading indicates time points that were not sampled (Barnes and
-Chuckanut after February 2022). Time points with no data had no
-sequencing reads corresponding to that species or no quantifiable
-cutthroat DNA by qPCR.\label{fig:ts}}
-\end{figure}
+species (See Appendix S2). These quantitative data for all four target
+species were then used in the linear mixed-effects model to assess
+salmonid trends over time (Figure 7).
 
 \hypertarget{effects-of-culverts}{%
 \subsubsection{Effects of Culverts}\label{effects-of-culverts}}
 
 Before considering the effect of construction, the difference in trends
-between upstream and downstream stations (Figure \ref{fig:ts})
-demonstrates that the culverts themselves have some effect, but
-generally not a large effect on the salmonid species surveyed. A notable
-exception was Barnes Creek, as the culvert was so clearly a barrier as
-most time points had no salmonid DNA upstream. Padden Creek upstream of
-I-5 also was more clearly a barrier to fish passage, while the culvert
-across SR-11 seemed to be less of a barrier to fish passage. In other
-cases, salmonid DNA is found upstream but not downstream, indicating
-that the culvert is likely not a barrier and there are resident
-individuals upstream of the culvert.
+between upstream and downstream stations (Figure 7) demonstrates that
+the culverts themselves have some effect, but generally not a large
+effect on the salmonid species surveyed. A notable exception was Barnes
+Creek, as the culvert was so clearly a barrier as most time points had
+no salmonid DNA upstream. Padden Creek upstream of I-5 also was more
+clearly a barrier to fish passage, while the culvert across SR-11 seemed
+to be less of a barrier to fish passage. In other cases, salmonid DNA is
+found upstream but not downstream, indicating that the culvert is likely
+not a barrier and there are resident individuals upstream of the
+culvert.
 
 Summarizing over all species and the four creeks used in the time series
-model, the culvert effect was minimal (Figure \ref{fig:culverts}); the
-average log-fold change between upstream and downstream sites was not
-significantly different from zero. Individual species' patterns were
-similar, indicating that there is not a species-specific effect where
-culverts block the passage of some salmon but not others (Figure S1.12).
-The maximum positive log-fold change (i.e., upstream having a higher
-mass flow rate) was 2.78 in Squalicum Creek for coho salmon (\emph{O.
-kisutch}) in August 2021, while the maximum negative log-fold change
-(i.e., downstream having a higher mass flow rate) was -1.11 found in
-Squalicum Creek for cutthroat trout (\emph{O. clarkii}) in December 2021
-(Figure S1.12). Of all species, creeks, and time points, 23 of the 151
-observations were within a log-fold change of -0.1 to 0.1, which
-corresponds with eDNA mass flow rates upstream within 10\% of mass flow
-rates downstream.
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/culvert_boxplot_passable.png}
-\caption{The effect of culvert on salmonid abundance summed across all
-species and creeks by time. The y-axis shows the log-fold change in eDNA
-mass flow rate (copies/s) between upstream and downstream, normalized by
-upstream mass flow rate. The box boundaries correspond to the 25th and
-75th percentiles; the whiskers correspond to 1.5 times the interquartile
-range. Here, negative values imply that eDNA mass flow rates are higher
-downstream than upstream. Samples with very low eDNA mass flow rates
-(\textless{} 150 copies/s) were removed before plotting to remove
-extreme proportional values due to large denominators. Grey stars
-indicate times when no samples were taken.\label{fig:culverts}}
-\end{figure}
+model, the culvert effect was minimal (Figure 8); the average log-fold
+change between upstream and downstream sites was not significantly
+different from zero. Individual species' patterns were similar,
+indicating that there is not a species-specific effect where culverts
+block the passage of some salmon but not others (Appendix S1: Figure
+S12). The maximum positive log-fold change (i.e., upstream having a
+higher mass flow rate) was 2.78 in Squalicum Creek for coho salmon
+(\emph{O. kisutch}) in August 2021, while the maximum negative log-fold
+change (i.e., downstream having a higher mass flow rate) was -1.11 found
+in Squalicum Creek for cutthroat trout (\emph{O. clarkii}) in December
+2021 (Appendix S1: Figure S12). Of all species, creeks, and time points,
+23 of the 151 observations were within a log-fold change of -0.1 to 0.1,
+which corresponds with eDNA mass flow rates upstream within 10\% of mass
+flow rates downstream.
 
 We also considered how the log-fold change in eDNA mass flow rates were
-impacted by the flow rate or discharge of the creek itself (Figure
-\ref{fig:culverts_flow}. We found that at months of the lowest flow
-(summer months), the log-fold changes between mass flow rates were the
-highest, while in winter months with highest discharge the log-fold
-changes were lower and downstream sites often had higher eDNA mass flow
-rates than upstream sites (Figure S1.12).
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/culvert_means_flow.png}
-\caption{Log-fold change in eDNA mass flow rate over time. Size of
-circles corresponds to the discharge in each creek at each time point.
-Color of circles corresponds to each creek. Each creek and time point
-has up to four circles of the same color for the four salmonid
-species.\label{fig:culverts_flow}}
-\end{figure}
+impacted by the flow rate or discharge of the creek itself (Figure 9).
+We found that at months of the lowest flow (summer months), the log-fold
+changes between mass flow rates were the highest, while in winter months
+with highest discharge the log-fold changes were lower and downstream
+sites often had higher eDNA mass flow rates than upstream sites
+(Appendix S1: Figure S12).
 
 \hypertarget{effects-of-culvert-replacement}{%
 \subsubsection{Effects of Culvert
@@ -849,29 +725,14 @@ Replacement}\label{effects-of-culvert-replacement}}
 By comparing the difference in upstream and downstream mass flow rates
 before and after construction in Padden Creek, we can assess how large
 of an impact the two culvert replacements had on salmonid species
-(Figure \ref{fig:construction}). The effects of the culvert replacement
-operations appeared to have been transient and fairly minor for the four
-salmonid species surveyed. We saw very minor fluctuations in the
-difference between upstream and downstream salmonid DNA mass flow rates,
-and did not see an increase in this difference due to the culvert
-removal as the log-fold changes in Padden Creek were similar to those in
-the control creeks at the same time points (Figure
-\ref{fig:construction}, grey points vs.~black points in areas of yellow
-shading).
-
-\begin{figure}
-\centering
-\includegraphics{../Output/Figures/culvert_padden_controls.png}
-\caption{Effect of Construction on Log-Fold Change in eDNA Flow Rate
-Upstream to Downstream in Padden Creek. Yellow shading shows when
-construction started for each of the two culverts. Grey points show the
-corresponding log-fold changes in control creeks and black points show
-Padden Creek. Sockeye/kokanee salmon (\emph{O. nerka}) was only found in
-Padden Creek so other creeks are not shown. Samples with very low eDNA
-mass flow rates (\textless{} 150 copies/s) were removed before plotting
-to remove extreme proportional values due to large
-denomenators.\label{fig:construction}}
-\end{figure}
+(Figure 10). The effects of the culvert replacement operations appeared
+to have been transient and fairly minor for the four salmonid species
+surveyed. We saw very minor fluctuations in the difference between
+upstream and downstream salmonid DNA mass flow rates, and did not see an
+increase in this difference due to the culvert removal as the log-fold
+changes in Padden Creek were similar to those in the control creeks at
+the same time points (Figure 10, grey points vs.~black points in areas
+of yellow shading).
 
 \hypertarget{discussion}{%
 \subsection{Discussion}\label{discussion}}
@@ -965,8 +826,8 @@ from September to December, sockeye salmon (\emph{O. nerka}) run from
 October to December, and steelhead trout (\emph{O. mykiss}) run from
 November to June. For migrating coho (\emph{O. kisutch}) and steelhead
 trout (\emph{O. mykiss}), juveniles may be present in the creeks
-year-round (Figure S1.4). eDNA methods at present cannot distinguish
-adults versus juveniles from DNA found in a water sample.
+year-round (Appendix S1: Figure S4). eDNA methods at present cannot
+distinguish adults versus juveniles from DNA found in a water sample.
 
 Despite the mix of migrating and non-migrating populations and various
 run timings, our metabarcoding data demonstrate that in Padden Creek,
@@ -1155,6 +1016,47 @@ helpful insight into culverts and salmonid life histories. We thank
 Katherine Pearson Maslenikov at the Burke Museum of Natural History and
 Culture for providing voucher specimens for Sanger sequencing. Thanks to
 Dr.~Jameal Samhouri and Dr.~Chris Sergeant for reviewing the manuscript.
+
+\newpage
+
+\hypertarget{figures}{%
+\subsection{Figures}\label{figures}}
+
+\begin{itemize}
+\setlength{\itemindent}{4em}
+\item[\textbf{Figure 1.}] Map of sampling locations near Bellingham, Washington. In the red subset, triangles designate the downstream sampling location and circles designate the upstream sampling location. Padden Creek (the treatment creek where the two culverts were replaced) is shown in the blue subset where downstream is a triangle, upstream of the first culvert (SR-11) is a circle, and upstream of the second culvert (I-5) is a square.
+\item[\textbf{Figure 2.}] Discharge (m\textsuperscript{3}/s) in Padden (USGS Gauge 12201905), Chuckanut (USGS Gauge 12201700), and Squalicum (USGS Gauge 12204010) Creeks over the course of sampling. Gauges at Chuckanut and Squalicum Creek went offline in November 2021 after a major storm event. Portage Creek and Barnes Creek did not have stream gauges. Circles designate the day of sampling. For Padden Creek, the nearest 15 minute interval of flow was used. For Chuckanut and Squalicum Creeks, the correction factor from five years of historical data from Padden Creek was used (see methods section and Appendix S1: Figure S2 and Appendix S1: Figure S3).
+\item[\textbf{Figure 3.}] Conceptual figure of different datasets and models used for analyses. \* indicates that here, biological replicates are different dilutions of the synthetic gBlock. \*\* indicates that for most samples, only one technical replicate was sequenced but for one sample per sampling month, three technical replicates were sequenced to check for consistency across replicates. \*\*\* indicates that here, the three biological replicates indicate three different mock communities with varying species compositions, but all containing the four salmonids of interest. Created with BioRender.com.
+\item[\textbf{Figure 4.}] Compositions of salmonid DNA in control creeks as determined by metabarcoding after correction for amplification bias. Grey shading denotes time points that were not sampled (Barnes and Chuckanut Creeks after March 2023 and Squalicum Creek in September 2021 which was dry). The empty bars in the Barnes upstream sites indicate that no salmonid DNA was found at those time points.
+\item[\textbf{Figure 5.}] Compositions of salmonid DNA in Padden Creek as determined by metabarcoding after correction for amplification bias. The empty bar in the March 2023 in Up5 indicates that no salmonid DNA was found. The vertical dashed lines indicates the time period in which the culverts were replaced (SR-11 and I-5, respectively).]
+\item[\textbf{Figure 6.}] Absolute mass flow rate (log copies/s) of cutthroat trout (\textbf{O. clarkii}) as measured by qPCR after flow correction. Note that Barnes Creek and Chuckanut Creek were not sampled after February 2022. Red crosses show the limit of detection for each species and time point, which changes with flow rate and total volume filtered per sample.
+\item[\textbf{Figure 7.}] Trends in mass flow rate (log copies/s) for each of four salmonid species across creeks and across time as estimated by eDNA analysis. Points represent posterior means for the linear mixed effects model and error bars represent the 95% posterior confidence interval. Colors indicate station upstream (black) or downstream (grey) of the culvert. Padden has an additional sampling site upstream of the second culvert (I-5; blue). Yellow shading indicates the time period in which the culverts in the treatment creek (Padden Creek) were replaced. Grey shading indicates time points that were not sampled (Barnes and Chuckanut after February 2022). Time points with no data had no sequencing reads corresponding to that species or no quantifiable cutthroat DNA by qPCR.
+\item[\textbf{Figure 8.}] The effect of culvert on salmonid abundance summed across all species and creeks by time. The y-axis shows the log-fold change in eDNA mass flow rate (copies/s) between upstream and downstream, normalized by upstream mass flow rate. The box boundaries correspond to the 25th and 75th percentiles; the whiskers correspond to 1.5 times the interquartile range. Here, negative values imply that eDNA mass flow rates are higher downstream than upstream. Samples with very low eDNA mass flow rates (less than 150 copies/s) were removed before plotting to remove extreme proportional values due to large denominators. Grey stars indicate times when no samples were taken.
+\item[\textbf{Figure 9.}] Log-fold change in eDNA mass flow rate between upstream and downstream over time. Size of circles corresponds to the discharge in each creek at each time point. Color of circles corresponds to each creek. Each creek and time point has up to four circles of the same color for the four salmonid species.
+\item[\textbf{Figure 10.}] Effect of construction on log-fold change in eDNA mass flow rate upstream to downstream in Padden Creek. Yellow shading shows when construction started for each of the two culverts. Grey points show the corresponding log-fold changes in control creeks and black points show Padden Creek. Sockeye/kokanee salmon (\textbf{O. nerka}) was only found in Padden Creek so other creeks are not shown. Samples with very low eDNA mass flow rates (less than 150 copies/s) were removed before plotting to remove extreme proportional values due to large denominators.
+
+\end{itemize}
+
+\newpage
+
+\textbf{Figure 1.} \includegraphics{../Output/Figures/SiteMap.png}
+\newpage \textbf{Figure 2.}
+\includegraphics{../Output/Figures/flow_gauges.png} \newpage
+\textbf{Figure 3.} \includegraphics{../Output/Figures/NGN_Fig3.png}
+\newpage \textbf{Figure 4.}
+\includegraphics{../Output/Figures/proportions_after_qm_nopadden.png}
+\newpage \textbf{Figure 5.}
+\includegraphics{../Output/Figures/proportions_after_qm_padden.png}
+\newpage \textbf{Figure 6.}
+\includegraphics{../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png}
+\newpage \textbf{Figure 7.}
+\includegraphics{../Output/Figures/multispeciesTrends_flowcorrected.png}
+\newpage \textbf{Figure 8.}
+\includegraphics{../Output/Figures/culvert_boxplot_passable.png}
+\newpage \textbf{Figure 9.}
+\includegraphics{../Output/Figures/culvert_means_flow.png} \newpage
+\textbf{Figure 10.}
+\includegraphics{../Output/Figures/culvert_padden_controls.png} \newpage
 
 \hypertarget{references}{%
 \subsection*{References}\label{references}}

@@ -24,7 +24,7 @@ header-includes:
 - \usepackage{gensymb}
 - \usepackage{caption}   
 - \captionsetup[figure]{labelformat=empty}
-- \usepackage[nomarkers, nolists, figuresonly]{endfloat}
+# - \usepackage[nomarkers, nolists, figuresonly]{endfloat}
 bibliography: references.bib
 csl: ecological-applications.csl
 ---
@@ -40,6 +40,8 @@ rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
 
 ```
+
+For submission to: \textit{Ecological Applications}
 
 Our analysis depends upon a set of quantitative models, each linking our observations of metabarcoding reads or qPCR cycle-threshold values to an underlying concentration of target-species DNA in water samples.
 
@@ -63,7 +65,7 @@ We model the probability of detection $P(z = 1)$) as a linear function of concen
 
 For those samples that amplify ($z = 1$), we model the observed Ct value ($y$) as a linear function of our parameter of interest, the log-concentration of target-species DNA under analysis ($c$). We treat $y$ as drawn from a normal distribution $y \sim N(\mu_{i,j}, \sigma_{i,j})$), where each triplicate sample on each qPCR plate has its own estimated mean and standard deviation. The means are estimated as a straightforward linear model, $\mu = \beta_{0,j} + \beta_{1,j}c$, but we allow the standard deviation to vary as a linear function of log-concentration so as to accurately capture decreasing precision with decreasing concentration: $\sigma = e^{\gamma_{0} + \gamma_{1,j}c}$; we estimate these parameters as an exponent to constrain $\sigma > 0$.
 
-Samples with known concentrations (i.e., standards) were fit jointly with unknown samples (i.e., environmental samples); because qPCR plate identity was shared among all environmental samples and standards within a plate, this has the effect of applying plate-specific slope and intercept values for the standard curve to each of the environmental samples on the plate (Figure S2.\ref{fig:qpcrmodel}).
+Samples with known concentrations (i.e., standards) were fit jointly with unknown samples (i.e., environmental samples); because qPCR plate identity was shared among all environmental samples and standards within a plate, this has the effect of applying plate-specific slope and intercept values for the standard curve to each of the environmental samples on the plate (Figure S13).
 
 We apply moderately informative priors that make use of background information in hand. For example, because qPCR standard curves of all kinds have slopes near -3, this slope becomes our background expectation as embodied in the prior on $\beta_1$, but the standard deviation of that prior leaves plenty of room for this background to be overwhelmed by the observed data. The same logic applies to the intercept of the standard curve, which in qPCR (for any given species) generally falls near 39 cycles, an expectation that we formalize by having $\beta_0$ drawn from a normal distribution with $\mu = 39$ and $\sigma = 3$.
 
@@ -83,7 +85,7 @@ y_{i,j} \sim Normal(\mu_{i,j}, \sigma_{i,j})   \text{    if } z_{i,j} = 1 \\
 \end{gather*}
 ```
 
-![Figure S2.1. Example of 2500 samples from the joint posterior distribution of the model fit for a single representative qPCR plate. Red dots are standard-curve observations with known starting concentrations. The spread of black dots (posterior samples) indicates the shape of the calibration curve, with standard deviation increasing as concentration decreases.\label{fig:qpcrmodel}](../Output/SupplementalFigures/qPCR_calibration_supplemental.png)
+![Figure S13. Example of 2500 samples from the joint posterior distribution of the model fit for a single representative qPCR plate. Red dots are standard-curve observations with known starting concentrations. The spread of black dots (posterior samples) indicates the shape of the calibration curve, with standard deviation increasing as concentration decreases.\label{fig:qpcrmodel}](../Output/SupplementalFigures/qPCR_calibration_supplemental.png)
 
 Model Diagnostics: 3 chains, 2500 iterations, for all parameters, $\hat{R} \leq 1.002$.
 
@@ -151,9 +153,9 @@ In `R` code using `rstanarm`, this model is coded as
 
     stan_glmer(log(observed) ~ (1 + time_idx|creek:species) + (1|station:creek:species:time_idx)
 
-Ultimately, the three models yielded very similar results (Figure S2.\ref{fig:comparemodels})). The LME model proved simplest and most flexible insofar as it could easily handle datasets with uneven sets of observations -- for example, cases in which a species was detected downstream of a barrier, but not upstream. We accordingly used the LME as the model for the analysis given in the main manuscript.
+Ultimately, the three models yielded very similar results (Figure S14). The LME model proved simplest and most flexible insofar as it could easily handle datasets with uneven sets of observations -- for example, cases in which a species was detected downstream of a barrier, but not upstream. We accordingly used the LME as the model for the analysis given in the main manuscript.
 
-![Figure S2.2. Comparison of three models (linear autoregressive, generalized additive model, and linear mixed effects model) shown for a subset of the data used in the main manuscript.\label{fig:comparemodels}](../Output/SupplementalFigures/stats_comparisonplot.pdf)
+![Figure S14. Comparison of three models (linear autoregressive, generalized additive model, and linear mixed effects model) shown for a subset of the data used in the main manuscript.\label{fig:comparemodels}](../Output/SupplementalFigures/stats_comparisonplot.pdf)
 
 ```{r load_data, echo=FALSE, message=FALSE}
 # #| echo: false
@@ -357,5 +359,7 @@ Ultimately, the three models yielded very similar results (Figure S2.\ref{fig:co
 # 
 # ggsave(comparisonPlot, file = here("Output", "SupplementalFigures","stats_comparisonplot.pdf"))             
 ```
+
+\newpage
 
 ## References
