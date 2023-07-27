@@ -15,7 +15,6 @@ header-includes:
 - \usepackage{setspace}\doublespacing
 - \usepackage{gensymb}
 - \geometry{verbose,letterpaper,tmargin=2.54cm,bmargin=2.54cm,lmargin=2.54cm,rmargin=2.54cm}
-#- \usepackage[nomarkers, nolists, figuresonly]{float}
 bibliography: references.bib
 csl: ecological-applications.csl
 ---
@@ -27,7 +26,7 @@ library(here)
 
 ## Quantifying Impacts of an Environmental Intervention Using Environmental DNA
 
-Elizabeth Andruszkiewicz Allan$^{1*\dagger}$, Ryan P. Kelly$^{1*}$, Erin R. D'Agnese$^{1,3}$, Maya N. Garber-Yonts$^{1}$, Megan R. Shaffer$^{1}$, Zachary J. Gold$^{2}$, Andrew O. Shelton$^{2}$
+Elizabeth Andruszkiewicz Allan$^{1*\ddagger}$, Ryan P. Kelly$^{1*}$, Erin R. D'Agnese$^{1,3}$, Maya N. Garber-Yonts$^{1}$, Megan R. Shaffer$^{1}$, Zachary J. Gold$^{2\dagger}$, Andrew O. Shelton$^{2}$
 
 $^{1}$ University of Washington, School of Marine and Environmental Affairs, 3737 Brooklyn Ave NE, Seattle, WA 98105, U.S.A.
 
@@ -39,9 +38,11 @@ $^3$ Wild EcoHealth, Tacoma WA, 98465, USA
 
 $^{*}$ Authors contributed equally to this work.
 
-$^{\dagger}$ Corresponding author: [eallan\@uw.edu](mailto:eallan@uw.edu){.email} \vspace{1em}
+$^{\dagger}$ Currently at NOAA Pacific Marine Environmental Laboratory, Seattle, WA, USA. 
 
-For submission to: \textit{Ecological Applications} \newline Manuscript type: Article \newline Open Research Statement: Data are already published and publicly available, with those publications properly cited in this submission. The repository for code can be found at: \newline  <https://github.com/eandrusz/quantitative_salmon_resubmit.git> \newline \textit{Keywords: environmental DNA, quantitative metabarcoding, environmental impact assessments, salmon, culvert}
+$^{\ddagger}$ Corresponding author: [eallan\@uw.edu](mailto:eallan@uw.edu){.email} \vspace{1em}
+
+For submission to: \textit{Ecological Applications} \newline Manuscript type: Article \newline Open Research Statement: Data are already published and publicly available, with those publications properly cited in this submission. The repository for code can be found at: \newline Andruszkiewicz Allan et al. 2023. <https://doi.org/10.5281/zenodo.8029271> \newline \textit{Keywords: environmental DNA, quantitative metabarcoding, environmental impact assessments, salmon, culvert}
 
 \newpage
 
@@ -75,7 +76,7 @@ Here, we report the results of an approximately 18-month eDNA sampling effort be
 
 ### Site and Species Selection
 
-We selected sampling locations based loosely on an asymmetrical BACI (Before-After-Control-Impact) study design [@underwood1992; @underwood1994; @benedetti-cecchi2001] to measure the environmental impact of a culvert replacement using eDNA. We sampled four control creeks where construction was not occuring, (Figure 1) at monthly intervals, both upstream and downstream of each creek's culvert. The two culverts in the treatment creek (Padden) were suspected to be partially impassible and thus were removed and replaced during the course of the study. The four control creeks ranged from preventing fish passage (Barnes and Chuckanut), partially passable (Squalicum), to allowing fish passage (Portage; see Appendix S1) [@washingtondepartmentoffishandwildlife2019]. These creeks were chosen due to their comparable size, flow, watersheds, and species presumed to be present to constrain as many ecological variables as possible.
+We selected sampling locations based loosely on an asymmetrical BACI (Before-After-Control-Impact) study design [@underwood1992; @underwood1994; @benedetti-cecchi2001] to measure the environmental impact of a culvert replacement using eDNA. We sampled four control creeks where construction was not occurring (Figure 1) at monthly intervals, both upstream and downstream of each creek's culvert. The two culverts in the treatment creek (Padden) were suspected to be partially impassible and thus were removed and replaced during the course of the study. The four control creeks ranged from preventing fish passage (Barnes and Chuckanut), partially passable (Squalicum), to allowing fish passage (Portage; see Appendix S1) [@washingtondepartmentoffishandwildlife2019]. These creeks were chosen due to their comparable size, flow, watersheds, and species presumed to be present to constrain as many ecological variables as possible.
 
 The first culvert replacement (SR-11) in Padden Creek occurred over about two months and included the "de-watering" of the creek, removal of the existing culvert, installation of the new culvert, and then the "re-watering" of the creek from late August 2021 to early October 2021 (Appendix S1: Figure S4). The second culvert replacement (I-5) in Padden Creek was a much larger construction project, including daylighting the creek and building a bridge under a large, five-lane interstate. In-water work for the I-5 culvert replacement began in late June 2022 and was completed in September 2022. By sampling before, during, and after both construction events, we were then able to isolate the effect of the culvert replacement itself -- controlling for temporal trends, background environmental variability, and sampling variability -- using a linear mixed effects model of eDNA abundances across creeks, time points, sampling stations, and species.
 
@@ -103,7 +104,7 @@ After sequencing, bioinformatic analyses were conducted in R [@rcoreteam2017]. A
 
 We quantified cutthroat trout (*O. clarkii*) DNA in each sample, targeting a 114 bp fragment of the cytochrome b gene with a qPCR assay [@duda2021]. The primer/probe sequences, final recipe, and thermocycling conditions can be found in Appendix S1. Each DNA sample was run in triplicate and was checked for inhibition using the EXO-IPC assay (Applied Biosystems). The majority of environmental samples (60%) were inhibited and accordingly diluted for analysis. In 80% of inhibited samples, a 1:10 dilution or less remedied the inhibition, but some samples (11%) required dilution by a factor of up to 1000. Each plate included a 8-point standard curve created using synthetic DNA (gBlocks) ranging from 1 to 100,000 copies/$\mu$L and six no template controls (NTCs) were included on each plate with molecular grade water instead of template. All qPCRs were conducted on an Applied Biosystems StepOnePlus thermocycler.
 
-All qPCR data was processed in R using Stan [@standevelopmentteam2022], relating environmental samples to the standard curve via a linear model (Figure 3, blue boxes; Appendix S2: Figure S13). We amended the standard linear regression model to more realistically capture the behavior of qPCR observations, accommodating non-detections as a function of underlying DNA concentration, and letting the standard deviation vary with the mean (lower-concentration samples had more uncertainty). See @mccall2014 and @shelton2019 for similar models; see Appendix S2 for full statistical details. Subsequent analysis corrected for sample-specific dilution if found inhibited and corrected for any variation in water-volume filtered during sample collection. Samples with standard deviations between technical replicates larger than 1.5 Ct values were removed from analyses.
+All qPCR data was processed in R using Stan [@standevelopmentteam2022], relating environmental samples to the standard curve via a linear model (Figure 3, blue boxes; Appendix S2: Figure S1). We amended the standard linear regression model to more realistically capture the behavior of qPCR observations, accommodating non-detections as a function of underlying DNA concentration, and letting the standard deviation vary with the mean (lower-concentration samples had more uncertainty). See @mccall2014 and @shelton2019 for similar models; see Appendix S2 for full statistical details. Subsequent analysis corrected for sample-specific dilution if found inhibited and corrected for any variation in water-volume filtered during sample collection. Samples with standard deviations between technical replicates larger than 1.5 Ct values were removed from analyses.
 
 ### Quantitative Metabarcoding
 
@@ -193,13 +194,13 @@ The construction had remarkably minimal effects on salmonid DNA concentrations. 
 
 It is notoriously difficult to quantify the environmental impact of discrete human impacts on ecosystems and species. Surveying species and communities by eDNA provides an opportunity for monitoring before, during, and after impacts in a scaleable and cost-effective way. Here, we demonstrate that monthly eDNA sampling before, during, and after an intervention alongside control sites can quantify the environmental impact of replacing a culvert. We found that in our treatment creek and control sites, four of the six barriers did not prohibit salmonid passage. We found that of the two culvert replacements in the treatment creek, one was a barrier and one was not, but both had minimal impacts on the four salmonid species monitored over the course of construction. We also provide a framework in which compositional metabarcoding data can be linked with qPCR data to obtain quantitative estimates of eDNA concentrations of many species. This provides a practical way to utilize the large amount of information from metabarcoding data without needing a unique qPCR assay for every species of interest. Environmental DNA is moving into practice and this study demonstrates how eDNA can be broadly used for environmental impact assessments for a wide range of species and environments.
 
-## Conflict of Interest Statement
-
-The authors declare there are no conflicts of interest.
-
 ## Acknowledgements
 
 This work was made possible by a grant from OceanKind to Ryan Kelly. The funders had no role in study design, data collection and analysis, decision to publish, or preparation of the manuscript. Figure 3 was created with BioRender.com. We thank Tammy Schmidt and Susan Kanzler from Washington Department of Transportation for facilitating access to field sites and providing helpful feedback throughout the project. We also thank Jenna McLaughlin, Joe Duprey and Ally Im for help field sampling and Dr. Ramon Gallego, Dr. Kim Parsons, and the University of Washington's Northwest Genomics Center for sequencing support. Dr. Braeden Van Deynze, Dr. Sunny Jardine, and Dr. Julian Olden provided helpful insight into culverts and salmonid life histories. We thank Katherine Pearson Maslenikov at the Burke Museum of Natural History and Culture for providing voucher specimens for Sanger sequencing. Thanks to Dr. Jameal Samhouri and Dr. Chris Sergeant for reviewing the manuscript. 
+
+## Conflict of Interest Statement
+
+The authors declare there are no conflicts of interest.
 
 \newpage
 
@@ -220,36 +221,8 @@ This work was made possible by a grant from OceanKind to Ryan Kelly. The funders
 
 \end{itemize}
 
-\newpage 
-\textbf{Figure 1.}
-![\label{fig:map}](../Output/Figures/SiteMap.png)
-\newpage
-\textbf{Figure 2.}
-![\label{fig:flows}](../Output/Figures/flow_gauges.png)
-\newpage
-\textbf{Figure 3.}
-![\label{fig:conceptualfig}](../Output/Figures/NGN_Fig3.png)
-\newpage
-\textbf{Figure 4.}
-![\label{fig:qm_controls}](../Output/Figures/proportions_after_qm_nopadden.png)
-\newpage
-\textbf{Figure 5.}
-![\label{fig:qm_padden}](../Output/Figures/proportions_after_qm_padden.png)
-\newpage
-\textbf{Figure 6.}
-![\label{fig:qpcr}](../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png)
-\newpage
-\textbf{Figure 7.}
-![\label{fig:ts}](../Output/Figures/multispeciesTrends_flowcorrected.png)
-\newpage
-\textbf{Figure 8.}
-![\label{fig:culverts}](../Output/Figures/culvert_boxplot_passable.png)
-\newpage
-\textbf{Figure 9.}
-![\label{fig:culverts_flow}](../Output/Figures/culvert_means_flow.png)
-\newpage
-\textbf{Figure 10.}
-![\label{fig:construction}](../Output/Figures/culvert_padden_controls.png)
 \newpage
 
 ## References
+
+

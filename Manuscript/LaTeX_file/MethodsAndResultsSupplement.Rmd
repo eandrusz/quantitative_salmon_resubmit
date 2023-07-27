@@ -24,7 +24,6 @@ header-includes:
 - \usepackage{gensymb}
 - \usepackage{caption}   
 - \captionsetup[figure]{labelformat=empty}
-# - \usepackage[nomarkers, nolists, figuresonly]{endfloat}
 bibliography: references.bib
 csl: ecological-applications.csl
 ---
@@ -34,6 +33,8 @@ knitr::opts_chunk$set(echo = TRUE, fig.pos = "H", out.extra = "")
 
 library(here)
 ```
+
+Supplemental material for "Quantifying Impacts of an Environmental Intervention Using Environmental DNA" in \textit{Ecological Applications}
 
 ## Field Sampling
 
@@ -65,7 +66,7 @@ Fish were excluded from Padden Creek on August 30th, 2021 in preparation for the
 
 ### Stocking in Lake Padden
 
-Padden Lake has historically been stocked with hatchery fish by the Washington Department of Fish and Wildlife (Figure S\ref{fig:timeline}). Rainbow trout (*O. mykiss*) and occassionally cutthroat trout (*O. clarkii*) and kokanee salmon (*O. nerka*) are stocked in Lake Padden, approximately 1.5 km upstream of the sampling sites. During the course of the study, rainbow trout were stocked in April 2021 and April 2022, kokanee salmon were stocked in May 2021 and October 2022, and cutthroat trout were stocked in November 2022 (Figure S\ref{fig:timeline}). However, despite the stocking of 30,000 kokanee salmon in May in Lake Padden, O. nerka was not detected by metabarcoding in May 2021 or at any point in 2021 until November (see main text Results). Importantly, this suggests that Lake Padden is far enough upstream that the eDNA signal at the sampling sites by the culvert is not a result of stocking the lake 1.5 km upstream (see main text Discussion for more information).
+Padden Lake has historically been stocked with hatchery fish by the Washington Department of Fish and Wildlife (Figure S\ref{fig:timeline}). Rainbow trout (*O. mykiss*) and occasionally cutthroat trout (*O. clarkii*) and kokanee salmon (*O. nerka*) are stocked in Lake Padden, approximately 1.5 km upstream of the sampling sites. During the course of the study, rainbow trout were stocked in April 2021 and April 2022, kokanee salmon were stocked in May 2021 and October 2022, and cutthroat trout were stocked in November 2022 (Figure S\ref{fig:timeline}). However, despite the stocking of 30,000 kokanee salmon in May in Lake Padden, O. nerka was not detected by metabarcoding in May 2021 or at any point in 2021 until November (see main text Results). Importantly, this suggests that Lake Padden is far enough upstream that the eDNA signal at the sampling sites by the culvert is not a result of stocking the lake 1.5 km upstream (see main text Discussion for more information).
 
 ![Figure S4. Timeline of runs for migrating species, stocking of Lake Padden, and construction at the intervention site (Padden Creek). Note, the dates of kokanee stocking do not include days, just the month and year. For plotting purposes, they are shown as the 15th.\label{fig:timeline}](../Output/SupplementalFigures/TimeLine.pdf)
 

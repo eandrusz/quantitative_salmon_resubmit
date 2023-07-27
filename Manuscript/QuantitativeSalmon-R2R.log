@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.17)  12 JUN 2023 11:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.17)  25 JUL 2023 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -555,150 +555,27 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 [4] [5] [6] [7] [8] [9]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-92.
+97.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [10]
-Overfull \hbox (23.74318pt too wide) in paragraph at lines 620--620
+Overfull \hbox (23.74318pt too wide) in paragraph at lines 625--625
 []\T1/lmtt/m/n/10 stan_glmer(log(observed) ~ (1 + time_idx|creek:species) + (1|
 station:creek:species:time_idx)  [] 
  []
 
-[11] [12] [13] [14] [15] [16] [17] [18] [19] [20]
-<../Output/Figures/SiteMap.png, id=159, 590.205pt x 446.6286pt>
-File: ../Output/Figures/SiteMap.png Graphic file (type png)
-<use ../Output/Figures/SiteMap.png>
-Package pdftex.def Info: ../Output/Figures/SiteMap.png  used on input line 1042
-.
-(pdftex.def)             Requested size: 469.76009pt x 355.48375pt.
-
-Overfull \hbox (47.32487pt too wide) in paragraph at lines 1042--1043
-[]\T1/lmr/bx/n/10 (-20) Figure 1. [] 
- []
-
-[21 <../Output/Figures/SiteMap.png>]
-<../Output/Figures/flow_gauges.png, id=166, 578.16pt x 433.62pt>
-File: ../Output/Figures/flow_gauges.png Graphic file (type png)
-<use ../Output/Figures/flow_gauges.png>
-Package pdftex.def Info: ../Output/Figures/flow_gauges.png  used on input line 
-1044.
-(pdftex.def)             Requested size: 469.75385pt x 352.31538pt.
-
-Overfull \hbox (47.31863pt too wide) in paragraph at lines 1043--1044
-[]\T1/lmr/bx/n/10 (-20) Figure 2. [] 
- []
-
-[22 <../Output/Figures/flow_gauges.png>]
-<../Output/Figures/NGN_Fig3.png, id=171, 766.062pt x 726.0726pt>
-File: ../Output/Figures/NGN_Fig3.png Graphic file (type png)
-<use ../Output/Figures/NGN_Fig3.png>
-Package pdftex.def Info: ../Output/Figures/NGN_Fig3.png  used on input line 104
-5.
-(pdftex.def)             Requested size: 469.76355pt x 445.2413pt.
-
-Overfull \hbox (47.32834pt too wide) in paragraph at lines 1045--1046
-[]\T1/lmr/bx/n/10 (-20) Figure 3. [] 
- []
-
-[23 <../Output/Figures/NGN_Fig3.png>]
-<../Output/Figures/proportions_after_qm_nopadden.png, id=177, 1011.78pt x 361.3
-5pt>
-File: ../Output/Figures/proportions_after_qm_nopadden.png Graphic file (type pn
-g)
-<use ../Output/Figures/proportions_after_qm_nopadden.png>
-Package pdftex.def Info: ../Output/Figures/proportions_after_qm_nopadden.png  u
-sed on input line 1047.
-(pdftex.def)             Requested size: 469.76266pt x 167.77238pt.
-
-Overfull \hbox (47.32745pt too wide) in paragraph at lines 1046--1048
-[]\T1/lmr/bx/n/10 (-20) Figure 4. [] 
- []
-
-[24 <../Output/Figures/proportions_after_qm_nopadden.png>]
-<../Output/Figures/proportions_after_qm_padden.png, id=182, 578.16pt x 361.35pt
->
-File: ../Output/Figures/proportions_after_qm_padden.png Graphic file (type png)
-
-<use ../Output/Figures/proportions_after_qm_padden.png>
-Package pdftex.def Info: ../Output/Figures/proportions_after_qm_padden.png  use
-d on input line 1049.
-(pdftex.def)             Requested size: 469.75385pt x 293.59616pt.
-
-Overfull \hbox (47.31863pt too wide) in paragraph at lines 1048--1050
-[]\T1/lmr/bx/n/10 (-20) Figure 5. [] 
- []
-
-[25 <../Output/Figures/proportions_after_qm_padden.png>]
-<../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png, id=188, 361.35pt 
-x 505.89pt>
-File: ../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png Graphic file 
-(type png)
-<use ../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png>
-Package pdftex.def Info: ../Output/Figures/modeled_cut_qpcr_updown_flowcorrecte
-d.png  used on input line 1051.
-(pdftex.def)             Requested size: 361.34912pt x 505.88875pt.
-[26 <../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png>]
-<../Output/Figures/multispeciesTrends_flowcorrected.png, id=193, 867.24pt x 505
-.89pt>
-File: ../Output/Figures/multispeciesTrends_flowcorrected.png Graphic file (type
- png)
-<use ../Output/Figures/multispeciesTrends_flowcorrected.png>
-Package pdftex.def Info: ../Output/Figures/multispeciesTrends_flowcorrected.png
-  used on input line 1053.
-(pdftex.def)             Requested size: 469.75827pt x 274.02563pt.
-
-Overfull \hbox (47.32306pt too wide) in paragraph at lines 1052--1054
-[]\T1/lmr/bx/n/10 (-20) Figure 7. [] 
- []
-
-[27 <../Output/Figures/multispeciesTrends_flowcorrected.png>]
-<../Output/Figures/culvert_boxplot_passable.png, id=198, 505.89pt x 361.35pt>
-File: ../Output/Figures/culvert_boxplot_passable.png Graphic file (type png)
-<use ../Output/Figures/culvert_boxplot_passable.png>
-Package pdftex.def Info: ../Output/Figures/culvert_boxplot_passable.png  used o
-n input line 1055.
-(pdftex.def)             Requested size: 469.76265pt x 335.54477pt.
-
-Overfull \hbox (47.32744pt too wide) in paragraph at lines 1054--1056
-[]\T1/lmr/bx/n/10 (-20) Figure 8. [] 
- []
-
-[28 <../Output/Figures/culvert_boxplot_passable.png>]
-<../Output/Figures/culvert_means_flow.png, id=203, 505.89pt x 361.35pt>
-File: ../Output/Figures/culvert_means_flow.png Graphic file (type png)
-<use ../Output/Figures/culvert_means_flow.png>
-Package pdftex.def Info: ../Output/Figures/culvert_means_flow.png  used on inpu
-t line 1057.
-(pdftex.def)             Requested size: 469.76265pt x 335.54477pt.
-
-Overfull \hbox (47.32744pt too wide) in paragraph at lines 1056--1057
-[]\T1/lmr/bx/n/10 (-20) Figure 9. [] 
- []
-
-[29 <../Output/Figures/culvert_means_flow.png>]
-<../Output/Figures/culvert_padden_controls.png, id=208, 505.89pt x 361.35pt>
-File: ../Output/Figures/culvert_padden_controls.png Graphic file (type png)
-<use ../Output/Figures/culvert_padden_controls.png>
-Package pdftex.def Info: ../Output/Figures/culvert_padden_controls.png  used on
- input line 1059.
-(pdftex.def)             Requested size: 469.76265pt x 335.54477pt.
-
-Overfull \hbox (52.96242pt too wide) in paragraph at lines 1058--1059
-[]\T1/lmr/bx/n/10 (-20) Figure 10. [] 
- []
-
-[30 <../Output/Figures/culvert_padden_controls.png>] [31] [32] [33] [34]
-Overfull \hbox (4.6519pt too wide) in paragraph at lines 1446--1451
+[11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24]
+Overfull \hbox (4.6519pt too wide) in paragraph at lines 1432--1437
 []\T1/lmr/m/n/10 (-20) U. S. Ge-o-log-i-cal Sur-vey. 1994. []USGS wa-ter data f
 or the na-tion[]. Re-trieved from https://waterdata.usgs.gov/nwis
  []
 
-[35] [36] (./QuantitativeSalmon-R2R.aux) ) 
+[25] [26] (./QuantitativeSalmon-R2R.aux) ) 
 Here is how much of TeX's memory you used:
- 14074 strings out of 478268
- 225702 string characters out of 5846347
+ 13992 strings out of 478268
+ 222428 string characters out of 5846347
  550510 words of memory out of 5000000
- 31714 multiletter control sequences out of 15000+600000
+ 31654 multiletter control sequences out of 15000+600000
  515648 words of font info for 140 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  74i,6n,77p,1019b,431s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -718,10 +595,10 @@ xmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2022/texmf-dist/f
 onts/type1/public/lm/lmss8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/
 public/lm/lmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/
 lmsy7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on QuantitativeSalmon-R2R.pdf (36 pages, 3971584 bytes).
+Output written on QuantitativeSalmon-R2R.pdf (26 pages, 320872 bytes).
 PDF statistics:
- 609 PDF objects out of 1000 (max. 8388607)
- 524 compressed objects within 6 object streams
- 160 named destinations out of 1000 (max. 500000)
- 28931 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 552 PDF objects out of 1000 (max. 8388607)
+ 490 compressed objects within 5 object streams
+ 150 named destinations out of 1000 (max. 500000)
+ 28881 words of extra memory for PDF output out of 29859 (max. 10000000)
 

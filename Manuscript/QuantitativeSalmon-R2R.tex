@@ -100,9 +100,10 @@
 Environmental
 DNA}\label{quantifying-impacts-of-an-environmental-intervention-using-environmental-dna}}
 
-Elizabeth Andruszkiewicz Allan\(^{1*\dagger}\), Ryan P. Kelly\(^{1*}\),
+Elizabeth Andruszkiewicz Allan\(^{1*\ddagger}\), Ryan P. Kelly\(^{1*}\),
 Erin R. D'Agnese\(^{1,3}\), Maya N. Garber-Yonts\(^{1}\), Megan R.
-Shaffer\(^{1}\), Zachary J. Gold\(^{2}\), Andrew O. Shelton\(^{2}\)
+Shaffer\(^{1}\), Zachary J. Gold\(^{2\dagger}\), Andrew O.
+Shelton\(^{2}\)
 
 \(^{1}\) University of Washington, School of Marine and Environmental
 Affairs, 3737 Brooklyn Ave NE, Seattle, WA 98105, U.S.A.
@@ -118,14 +119,18 @@ U.S.A.
 
 \(^{*}\) Authors contributed equally to this work.
 
-\(^{\dagger}\) Corresponding author:
+\(^{\dagger}\) Currently at NOAA Pacific Marine Environmental
+Laboratory, Seattle, WA, USA.
+
+\(^{\ddagger}\) Corresponding author:
 \href{mailto:eallan@uw.edu}{\nolinkurl{eallan@uw.edu}} \vspace{1em}
 
 For submission to: \textit{Ecological Applications} \newline Manuscript
 type: Article \newline Open Research Statement: Data are already
 published and publicly available, with those publications properly cited
 in this submission. The repository for code can be found at:
-\newline  \url{https://github.com/eandrusz/quantitative_salmon_resubmit.git}
+\newline Andruszkiewicz Allan et al.~2023.
+\url{https://doi.org/10.5281/zenodo.8029271}
 \newline \textit{Keywords: environmental DNA, quantitative metabarcoding, environmental impact assessments, salmon, culvert}
 
 \newpage
@@ -342,7 +347,7 @@ We selected sampling locations based loosely on an asymmetrical BACI
 (Before-After-Control-Impact) study design (Underwood 1992, 1994,
 Benedetti-Cecchi 2001) to measure the environmental impact of a culvert
 replacement using eDNA. We sampled four control creeks where
-construction was not occuring, (Figure 1) at monthly intervals, both
+construction was not occurring (Figure 1) at monthly intervals, both
 upstream and downstream of each creek's culvert. The two culverts in the
 treatment creek (Padden) were suspected to be partially impassible and
 thus were removed and replaced during the course of the study. The four
@@ -518,7 +523,7 @@ StepOnePlus thermocycler.
 
 All qPCR data was processed in R using Stan (Stan Development Team
 2022), relating environmental samples to the standard curve via a linear
-model (Figure 3, blue boxes; Appendix S2: Figure S13). We amended the
+model (Figure 3, blue boxes; Appendix S2: Figure S1). We amended the
 standard linear regression model to more realistically capture the
 behavior of qPCR observations, accommodating non-detections as a
 function of underlying DNA concentration, and letting the standard
@@ -993,12 +998,6 @@ moving into practice and this study demonstrates how eDNA can be broadly
 used for environmental impact assessments for a wide range of species
 and environments.
 
-\hypertarget{conflict-of-interest-statement}{%
-\subsection{Conflict of Interest
-Statement}\label{conflict-of-interest-statement}}
-
-The authors declare there are no conflicts of interest.
-
 \hypertarget{acknowledgements}{%
 \subsection{Acknowledgements}\label{acknowledgements}}
 
@@ -1016,6 +1015,12 @@ helpful insight into culverts and salmonid life histories. We thank
 Katherine Pearson Maslenikov at the Burke Museum of Natural History and
 Culture for providing voucher specimens for Sanger sequencing. Thanks to
 Dr.~Jameal Samhouri and Dr.~Chris Sergeant for reviewing the manuscript.
+
+\hypertarget{conflict-of-interest-statement}{%
+\subsection{Conflict of Interest
+Statement}\label{conflict-of-interest-statement}}
+
+The authors declare there are no conflicts of interest.
 
 \newpage
 
@@ -1038,25 +1043,6 @@ Dr.~Jameal Samhouri and Dr.~Chris Sergeant for reviewing the manuscript.
 \end{itemize}
 
 \newpage
-
-\textbf{Figure 1.} \includegraphics{../Output/Figures/SiteMap.png}
-\newpage \textbf{Figure 2.}
-\includegraphics{../Output/Figures/flow_gauges.png} \newpage
-\textbf{Figure 3.} \includegraphics{../Output/Figures/NGN_Fig3.png}
-\newpage \textbf{Figure 4.}
-\includegraphics{../Output/Figures/proportions_after_qm_nopadden.png}
-\newpage \textbf{Figure 5.}
-\includegraphics{../Output/Figures/proportions_after_qm_padden.png}
-\newpage \textbf{Figure 6.}
-\includegraphics{../Output/Figures/modeled_cut_qpcr_updown_flowcorrected.png}
-\newpage \textbf{Figure 7.}
-\includegraphics{../Output/Figures/multispeciesTrends_flowcorrected.png}
-\newpage \textbf{Figure 8.}
-\includegraphics{../Output/Figures/culvert_boxplot_passable.png}
-\newpage \textbf{Figure 9.}
-\includegraphics{../Output/Figures/culvert_means_flow.png} \newpage
-\textbf{Figure 10.}
-\includegraphics{../Output/Figures/culvert_padden_controls.png} \newpage
 
 \hypertarget{references}{%
 \subsection*{References}\label{references}}

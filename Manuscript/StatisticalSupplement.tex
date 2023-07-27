@@ -103,7 +103,9 @@ Gold, \and Andrew O. Shelton}
 \begin{document}
 \maketitle
 
-For submission to: \textit{Ecological Applications}
+Supplemental material for ``Quantifying Impacts of an Environmental
+Intervention Using Environmental DNA'' in
+\textit{Ecological Applications}
 
 Our analysis depends upon a set of quantitative models, each linking our
 observations of metabarcoding reads or qPCR cycle-threshold values to an
@@ -172,7 +174,7 @@ with unknown samples (i.e., environmental samples); because qPCR plate
 identity was shared among all environmental samples and standards within
 a plate, this has the effect of applying plate-specific slope and
 intercept values for the standard curve to each of the environmental
-samples on the plate (Figure S13).
+samples on the plate (Figure S1).
 
 We apply moderately informative priors that make use of background
 information in hand. For example, because qPCR standard curves of all
@@ -201,7 +203,7 @@ y_{i,j} \sim Normal(\mu_{i,j}, \sigma_{i,j})   \text{    if } z_{i,j} = 1 \\
 \begin{figure}
 \centering
 \includegraphics{../Output/SupplementalFigures/qPCR_calibration_supplemental.png}
-\caption{Figure S13. Example of 2500 samples from the joint posterior
+\caption{Figure S1. Example of 2500 samples from the joint posterior
 distribution of the model fit for a single representative qPCR plate.
 Red dots are standard-curve observations with known starting
 concentrations. The spread of black dots (posterior samples) indicates
@@ -349,7 +351,7 @@ In \texttt{R} code using \texttt{rstanarm}, this model is coded as
 stan_glmer(log(observed) ~ (1 + time_idx|creek:species) + (1|station:creek:species:time_idx)
 \end{verbatim}
 
-Ultimately, the three models yielded very similar results (Figure S14).
+Ultimately, the three models yielded very similar results (Figure S2).
 The LME model proved simplest and most flexible insofar as it could
 easily handle datasets with uneven sets of observations -- for example,
 cases in which a species was detected downstream of a barrier, but not
@@ -359,7 +361,7 @@ given in the main manuscript.
 \begin{figure}
 \centering
 \includegraphics{../Output/SupplementalFigures/stats_comparisonplot.pdf}
-\caption{Figure S14. Comparison of three models (linear autoregressive,
+\caption{Figure S2. Comparison of three models (linear autoregressive,
 generalized additive model, and linear mixed effects model) shown for a
 subset of the data used in the main
 manuscript.\label{fig:comparemodels}}
